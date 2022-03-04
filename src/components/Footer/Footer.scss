@@ -1,0 +1,51 @@
+@import "../../global.scss";
+
+.footer {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500;
+  padding: 0px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+
+  .footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .made-by {
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      transition: all 0.2s ease;
+
+      .kf-icon {
+        max-height: 23px;
+        max-width: 23px;
+        border-radius: 50px;
+        margin-right: 10px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .footer-icon {
+        cursor: pointer;
+        margin-left: 10px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+    }
+  }
+}

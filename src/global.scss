@@ -1,0 +1,92 @@
+$navColor: black;
+$navHeight: 44px;
+$scollTrackColor: rgba(230, 230, 230, 0);
+$scrollThumbColor: rgb(230, 230, 230);
+
+$width: 768px;
+
+@mixin mobile {
+  @media (min-height: 421px) {
+    @media (max-width: #{$width}) {
+      @content;
+    }
+  }
+}
+
+@mixin smallDesktop {
+  @media (min-height: 1px) {
+    @media (max-width: 1300px) and (min-width: 820px) {
+      @content;
+    }
+  }
+}
+
+@mixin mobileHorizontal {
+  @media (max-height: 420px) {
+    @media (min-width: 600px) and (max-width: 820px) {
+      @content;
+    }
+  }
+}
+
+@mixin mobileKeyboard {
+  @media (max-height: 500px) {
+    @media (max-width: 500px) {
+      @content;
+    }
+  }
+}
+
+// LOADER
+.loader-full-screen {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include mobile {
+    // height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+}
+// LOADER
+.loader-board {
+  height: 67vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include mobile {
+    // height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+}
+.loader-home {
+  height: 630px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 705px;
+
+  @include mobile {
+    // height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+}
+
+// SCROLLBAR
+::-webkit-scrollbar {
+  width: 23px;
+  height: 23px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $scollTrackColor;
+  background: $scollTrackColor;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $scrollThumbColor;
+  border: solid 8px transparent;
+  border-radius: 30px;
+  background-clip: content-box;
+}

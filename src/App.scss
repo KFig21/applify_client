@@ -1,0 +1,11 @@
+@import "./global.scss";
+
+.main {
+  height: calc(100vh - $navHeight);
+  min-height: calc(100vh - $navHeight);
+  padding-top: $navHeight;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

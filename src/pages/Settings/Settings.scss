@@ -1,0 +1,129 @@
+@import "../../global.scss";
+
+.settings-page {
+  min-height: calc(100vh - $navHeight);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-family: "poppins", sans-serif;
+    margin: 15px;
+  }
+
+  .settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .settings-section-container {
+      .theme-buttons-container {
+        display: flex;
+      }
+
+      .settings-input-container {
+        min-height: 50px;
+      }
+      .settings-input-container-w-radio {
+        padding: 5px 0px;
+      }
+
+      .settings-input-container,
+      .settings-input-container-w-radio {
+        display: flex;
+        width: 500px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+        overflow: visible;
+        box-sizing: border-box;
+
+        .settings-radio-buttons-container {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          margin: 0px;
+        }
+
+        .input-label {
+          font-size: 20px;
+          position: relative;
+          margin-bottom: 5px;
+
+          &.edit-boardname {
+            min-width: unset;
+            margin-bottom: 10px;
+            margin-right: 10px;
+          }
+
+          .input-label-subtext {
+            font-size: 13px;
+            font-style: italic;
+          }
+        }
+
+        .settings-radio-container {
+          display: flex;
+          flex-direction: column;
+          padding: 5px;
+
+          span {
+            padding-left: 10px;
+          }
+
+          .settings-radio-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100%;
+            margin: 6px 0px;
+
+            .settings-radio-wrapper {
+              position: relative;
+              margin: 5px 7px;
+
+              .settings-radio-label {
+                font-size: 16px;
+                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .settings-radio-input {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                visibility: hidden;
+              }
+            }
+          }
+
+          .settings-pay-amount-container {
+            .pay-na {
+              margin-left: 10px;
+              font-size: 20px;
+              padding: 12.5px 0px;
+            }
+          }
+        }
+      }
+    }
+
+    .logout-button-container {
+      margin: 15px auto 20px auto;
+      padding-top: 20px;
+      border-top: 2px solid rgba(128, 128, 128, 0.4);
+      width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

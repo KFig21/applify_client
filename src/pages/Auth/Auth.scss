@@ -1,0 +1,76 @@
+@import "../../global.scss";
+
+.auth-page {
+  min-height: calc(100% - $navHeight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  font-family: "poppins", sans-serif;
+
+  .auth-container {
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .auth-input {
+        padding: 5px 10px;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+        margin: 5px 0px;
+        font-size: 16px;
+      }
+
+      .auth-button {
+        margin: 5px auto 0px auto;
+
+        &.false {
+          opacity: 0.35;
+        }
+      }
+    }
+  }
+
+  .auth-sub-container {
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .dont-have-an-account {
+      display: flex;
+      flex-direction: row;
+      a {
+        text-decoration: none;
+        padding-left: 5px;
+      }
+    }
+
+    .error-span {
+      color: rgb(252, 86, 86);
+      position: absolute;
+      top: 95px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      text-align: center;
+    }
+
+    .just-visiting-container {
+      margin-top: 20px;
+    }
+  }
+}

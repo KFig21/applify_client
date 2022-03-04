@@ -1,0 +1,406 @@
+@import "../../global.scss";
+
+//transition effects
+//transition effects
+
+@keyframes modalUp {
+  0% {
+    top: 1000px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes modalDown {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 1000px;
+  }
+}
+@keyframes formUp {
+  0% {
+    top: 1000px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes formDown {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 1000px;
+  }
+}
+@keyframes blurIn {
+  50% {
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    backdrop-filter: blur(6px);
+  }
+}
+
+@keyframes blurOut {
+  0% {
+    backdrop-filter: blur(6px);
+  }
+  50% {
+    backdrop-filter: blur(0px);
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin-top: $navHeight;
+  height: calc(100% - $navHeight);
+  width: 100%;
+  z-index: 5;
+  transition: all ease 1s;
+
+  &.in {
+    animation: modalUp 1s ease;
+  }
+
+  &.out {
+    animation: modalDown 1s ease;
+  }
+
+  .modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 40px 20px 30px;
+    z-index: 10;
+    border-radius: 20px;
+    max-height: 80vh;
+    overflow-y: overlay;
+    position: relative;
+    width: 100%;
+    max-width: 576px;
+    transition: all ease 1s;
+
+    &.in {
+      animation: formUp 1s ease;
+    }
+
+    &.out {
+      animation: formDown 1s ease;
+    }
+
+    &.job {
+      align-items: flex-start;
+    }
+
+    &.resume {
+      max-width: 650px;
+    }
+
+    .modal-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      backdrop-filter: blur(12px);
+      padding: 20px 40px 20px 30px;
+      border-radius: 20px 20px 0px 0px;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      width: inherit;
+      max-width: inherit;
+
+      &.board-name-edit {
+        backdrop-filter: none;
+      }
+
+      .modal-name {
+        font-size: 26px;
+        font-weight: 500;
+      }
+
+      .icon-container {
+        margin-top: 2px;
+        margin-right: 8px;
+        min-width: 30px;
+        max-width: 30px;
+        max-height: 30px;
+        min-height: 30px;
+        .favorite-icon {
+          min-width: 30px;
+          max-width: 30px;
+          max-height: 30px;
+          min-height: 30px;
+        }
+      }
+    }
+
+    .modal-inputs-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 90px;
+
+      &.resume {
+        align-items: center;
+        width: 100%;
+        max-height: 70vh;
+        overflow: hidden;
+      }
+
+      .modal-input {
+        outline: none;
+        border: none;
+        min-width: 380px;
+        font-size: 20px;
+
+        &.new-board {
+          margin: 10px 0px 15px 0px;
+        }
+        &.resume {
+          margin: 10px 0px 15px 0px;
+          width: 90%;
+        }
+
+        &.job {
+          margin: 6px 0px;
+        }
+
+        &.pay {
+          max-width: 100px;
+          min-width: unset;
+          margin-left: 10px;
+        }
+        &.date {
+          max-width: 200px;
+          min-width: unset;
+        }
+      }
+      // REMOVE ARROWS ON NUMBER INPUT
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      .modal-buttons-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+
+        &.new-board {
+        }
+
+        &.job {
+          margin-top: 10px;
+        }
+
+        .modal-button {
+          &.false {
+            opacity: 0.35;
+          }
+        }
+
+        .delete-buttons-container {
+          display: flex;
+          justify-content: space-evenly;
+          min-width: 200px;
+        }
+      }
+
+      .job-input-container {
+        min-height: 50px;
+      }
+      .job-input-container-w-radio {
+        padding: 5px 0px;
+      }
+
+      .job-input-container,
+      .job-input-container-w-radio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+        overflow: visible;
+        box-sizing: border-box;
+        width: 100%;
+
+        &.date-input {
+          justify-content: flex-start;
+        }
+
+        .input-label {
+          font-size: 20px;
+          padding-right: 12px;
+          min-width: 150px;
+          position: relative;
+
+          &.edit-boardname {
+            min-width: unset;
+            margin-bottom: 10px;
+            margin-right: 10px;
+          }
+
+          .input-label-subtext {
+            font-size: 13px;
+            font-style: italic;
+          }
+
+          &.filter {
+            min-width: 100px;
+          }
+        }
+
+        .center-content {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: auto;
+        }
+
+        .job-radio-container {
+          display: flex;
+          flex-direction: column;
+          padding: 5px;
+
+          span {
+            padding-left: 10px;
+          }
+
+          .job-radio-buttons-container {
+            display: flex;
+            width: 400px;
+            flex-wrap: wrap;
+            height: 100%;
+            margin-top: 6px;
+
+            .job-radio-wrapper {
+              position: relative;
+              margin: 5px 7px;
+
+              .job-radio-label {
+                font-size: 16px;
+                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .job-radio-input {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                visibility: hidden;
+              }
+            }
+
+            &.filter {
+              width: 450px;
+
+              align-items: center;
+              justify-content: center;
+            }
+          }
+
+          .job-pay-amount-container {
+            .pay-na {
+              margin-left: 10px;
+              font-size: 20px;
+              padding: 12.5px 0px;
+            }
+          }
+        }
+      }
+
+      .filter-container {
+        margin-bottom: 20px;
+        width: 100%;
+      }
+    }
+
+    .view-modal-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      padding: 15px 40px 5px 30px;
+      border-radius: 20px 20px 0px 0px;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      width: inherit;
+      max-width: inherit;
+
+      .modal-view-title {
+        .icon-container {
+          min-width: 30px;
+          max-width: 30px;
+          max-height: 30px;
+          min-height: 30px;
+          margin: 8px 7px 0px 0px;
+
+          .favorite-icon {
+            min-width: 30px;
+            max-width: 30px;
+            max-height: 30px;
+            min-height: 30px;
+          }
+        }
+        .modal-title-company-and-title {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .modal-view-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      // position: relative;
+      width: 100%;
+
+      .view-details {
+        margin-left: 55px;
+        margin-top: 112px;
+      }
+    }
+  }
+
+  .modal-background {
+    backdrop-filter: blur(6px);
+    &.in {
+      animation: blurIn 1s ease;
+    }
+
+    &.out {
+      animation: blurOut 1s ease;
+    }
+  }
+}

@@ -1,0 +1,148 @@
+@import "../../global.scss";
+
+.home-page {
+  font-family: "poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - $navHeight - $navHeight);
+  overflow: hidden;
+
+  .home-header {
+    h1 {
+      font-family: "poppins", sans-serif;
+      margin: 15px;
+    }
+  }
+
+  .home-content-container {
+    max-width: 750px;
+    max-height: 75vh;
+
+    .boards {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2px;
+      width: 100%;
+
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        .boards-length {
+          font-size: 20px;
+          margin-left: 5px;
+          font-family: Helvetica, sans-serif !important;
+          padding-bottom: 1px;
+        }
+      }
+
+      .boards-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .board-link-container {
+          text-decoration: none;
+
+          .board-container {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            .board-link-name {
+              font-size: 18px;
+              margin-bottom: 5px;
+              width: 100%;
+              overflow: hidden !important;
+              text-overflow: ellipsis !important;
+              white-space: nowrap !important;
+            }
+          }
+        }
+      }
+
+      .job-sites-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+
+        $jobSiteDimension: 115px;
+
+        .jobsite-container {
+          display: flex;
+          align-self: center;
+          margin: 10px auto;
+          max-width: $jobSiteDimension;
+          min-width: $jobSiteDimension;
+          a {
+            display: flex;
+            flex-direction: column;
+
+            .jobsite-img-container {
+              max-width: $jobSiteDimension;
+              min-width: $jobSiteDimension;
+              max-height: $jobSiteDimension;
+              min-height: $jobSiteDimension;
+              object-fit: cover;
+
+              img {
+                max-width: $jobSiteDimension;
+                max-height: $jobSiteDimension;
+                min-width: $jobSiteDimension;
+                min-height: $jobSiteDimension;
+              }
+            }
+          }
+        }
+      }
+
+      .quicklinks-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .quicklinks-icons-container {
+          display: flex;
+
+          .quicklinks-icon {
+            max-height: 18px;
+            max-width: 18px;
+          }
+
+          .copy-icon-container {
+            position: relative;
+
+            .floating-text {
+              position: absolute;
+              opacity: 0;
+              font-weight: 600;
+              top: -1000px;
+              &.active {
+                animation: floatingText 1.1s ease;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes floatingText {
+  0% {
+    top: -20px;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    top: -35px;
+    opacity: 0;
+  }
+}
