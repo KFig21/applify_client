@@ -104,9 +104,9 @@ const darkThemeYellow = {
     rejected_Text_true: "rgb(20, 20, 20)",
     rejected_Text_status_col: "rgba(220, 20, 60, 0.7)",
     // // passed
-    passed_Border: "rgba(118, 47, 224, 0.4)",
-    passed_Text: "rgba(118, 47, 224, 0.4)",
-    passed_Bg: "rgba(118, 47, 224, 0.3)",
+    passed_Border: "rgba(118, 47, 224, 0.55)",
+    passed_Text: "rgba(118, 47, 224, 0.6)",
+    passed_Bg: "rgba(118, 47, 224, 0.25)",
     passed_Border_true: "rgb(118, 47, 224)",
     passed_Bg_true: "rgb(118, 47, 224)",
     passed_Text_true: "rgb(20, 20, 20)",

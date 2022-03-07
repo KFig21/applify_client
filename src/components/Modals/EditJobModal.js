@@ -184,7 +184,11 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
               ></SC.authInput>
             </div>
             {/* APPLIED */}
-            <AppliedInput applied={applied} setApplied={setApplied} />
+            <AppliedInput
+              applied={applied}
+              setApplied={setApplied}
+              setStatus={setStatus}
+            />
             {/* DATE APPLIED */}
             <div className="job-input-container date-input">
               <span className="input-label">Date Applied</span>

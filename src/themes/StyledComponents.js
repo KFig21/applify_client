@@ -391,6 +391,19 @@ const SC = {
         color: ${(props) => props.theme.colors.waiting_Text_true} !important;
       }
     }
+
+    &.applied {
+      border-color: ${(props) => props.theme.colors.waiting_Border} !important;
+      background-color: ${(props) => props.theme.colors.waiting_Bg} !important;
+      color: ${(props) => props.theme.colors.waiting_Text} !important;
+      &.true {
+        border-color: ${(props) =>
+          props.theme.colors.waiting_Border_true} !important;
+        background-color: ${(props) =>
+          props.theme.colors.waiting_Bg_true} !important;
+        color: ${(props) => props.theme.colors.waiting_Text_true} !important;
+      }
+    }
     &.viewed {
       border-color: ${(props) => props.theme.colors.viewed_Border} !important;
       background-color: ${(props) => props.theme.colors.viewed_Bg} !important;
@@ -1016,6 +1029,32 @@ const SC = {
           color: ${(props) =>
             props.theme.colors.waiting_Border_true} !important;
           &.result {
+            border-color: rgba(150, 150, 150, 0) !important;
+            color: ${(props) => props.theme.colors.waiting_Bg_true} !important;
+            background-color: transparent !important;
+            font-style: italic;
+          }
+          &.resolved {
+            border-color: rgba(150, 150, 150, 0) !important;
+            color: ${(props) => props.theme.colors.waiting_Bg_true} !important;
+            background-color: transparent !important;
+            font-style: italic;
+          }
+        }
+        &.applied {
+          border-color: ${(props) =>
+            props.theme.colors.waiting_Border_true} !important;
+          background-color: ${(props) =>
+            props.theme.colors.waiting_Bg} !important;
+          color: ${(props) =>
+            props.theme.colors.waiting_Border_true} !important;
+          &.result {
+            border-color: rgba(150, 150, 150, 0) !important;
+            color: ${(props) => props.theme.colors.waiting_Bg_true} !important;
+            background-color: transparent !important;
+            font-style: italic;
+          }
+          &.resolved {
             border-color: rgba(150, 150, 150, 0) !important;
             color: ${(props) => props.theme.colors.waiting_Bg_true} !important;
             background-color: transparent !important;

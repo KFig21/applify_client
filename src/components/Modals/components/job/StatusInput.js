@@ -3,7 +3,6 @@ import React from "react";
 import SC from "../../../../themes/StyledComponents";
 
 export default function StatusInput({ status, setStatus }) {
-  console.log(status === "waiting");
   return (
     <div className="job-input-container-w-radio">
       <span className="input-label">Status</span>
@@ -25,6 +24,21 @@ export default function StatusInput({ status, setStatus }) {
               id="status-waiting"
               className="job-radio-input"
               onChange={() => setStatus("waiting")}
+            />
+          </div>
+          <div className="job-radio-wrapper">
+            <SC.jobFormRadioLabel
+              htmlFor="status-applied"
+              className={`job-radio-label applied ${status === "applied"}`}
+            >
+              applied
+            </SC.jobFormRadioLabel>
+            <input
+              type="radio"
+              name="status"
+              id="status-applied"
+              className="job-radio-input"
+              onChange={() => setStatus("applied")}
             />
           </div>
           <div className="job-radio-wrapper">
@@ -89,7 +103,7 @@ export default function StatusInput({ status, setStatus }) {
               onChange={() => setStatus("accepted")}
             />
           </div>
-          <div className="job-radio-wrapper">
+          {/* <div className="job-radio-wrapper">
             <SC.jobFormRadioLabel
               htmlFor="status-rejected"
               className={`job-radio-label rejected ${status === "rejected"}`}
@@ -118,7 +132,7 @@ export default function StatusInput({ status, setStatus }) {
               className="job-radio-input"
               onChange={() => setStatus("closed")}
             />
-          </div>
+          </div> */}
         </div>
       </SC.jobRadioContainer>
     </div>

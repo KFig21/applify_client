@@ -26,6 +26,22 @@ export default function StatusFilter({ filter, setFilter }) {
                 onChange={() => setFilter("waiting")}
               />
             </div>
+            {/* APPLIED */}
+            <div className="job-radio-wrapper">
+              <SC.jobFormRadioLabel
+                htmlFor="status-applied"
+                className={`job-radio-label applied ${filter === "applied"}`}
+              >
+                applied
+              </SC.jobFormRadioLabel>
+              <input
+                type="radio"
+                name="status"
+                id="status-applied"
+                className="job-radio-input"
+                onChange={() => setFilter("applied")}
+              />
+            </div>
             {/* VIEWED */}
             <div className="job-radio-wrapper">
               <SC.jobFormRadioLabel
@@ -93,7 +109,7 @@ export default function StatusFilter({ filter, setFilter }) {
               />
             </div>
             {/* REJECTED */}
-            <div className="job-radio-wrapper">
+            {/* <div className="job-radio-wrapper">
               <SC.jobFormRadioLabel
                 htmlFor="status-rejected"
                 className={`job-radio-label rejected ${filter === "rejected"}`}
@@ -107,9 +123,9 @@ export default function StatusFilter({ filter, setFilter }) {
                 className="job-radio-input"
                 onChange={() => setFilter("rejected")}
               />
-            </div>
+            </div> */}
             {/* CLOSED */}
-            <div className="job-radio-wrapper">
+            {/* <div className="job-radio-wrapper">
               <SC.jobFormRadioLabel
                 htmlFor="status-closed"
                 className={`job-radio-label closed ${filter === "closed"}`}
@@ -123,7 +139,7 @@ export default function StatusFilter({ filter, setFilter }) {
                 className="job-radio-input"
                 onChange={() => setFilter("closed")}
               />
-            </div>
+            </div> */}
           </div>
         </SC.jobRadioContainer>
       </div>

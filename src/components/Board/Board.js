@@ -203,6 +203,8 @@ export default function Board() {
                     const job = row.original;
                     let stickyBG = (row.index + 1) % 2 === 0 ? "even" : "odd";
                     let props = { ...cell.getCellProps() };
+                    let jobRes =
+                      job.result === "waiting" ? "unresolved" : "resolved";
 
                     // CELL FORMATTING
                     // CELL FORMATTING
@@ -363,10 +365,10 @@ export default function Board() {
                         >
                           <SC.ST_cell_status className="board-job-cell center min80">
                             <div
-                              className={`job-status-res-container ${job.status}`}
+                              className={`job-status-res-container ${job.status} ${jobRes}`}
                             >
                               <span
-                                className={`job-status-res status ${job.status}`}
+                                className={`job-status-res status ${job.status} ${jobRes}`}
                               >
                                 {job.status}
                               </span>

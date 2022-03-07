@@ -3,6 +3,7 @@ import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
 import { register } from "../../store/actions/authActions";
 import SC from "../../themes/StyledComponents";
 import "./Auth.scss";
@@ -11,6 +12,7 @@ export default function Signup() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   const redirect = useNavigate();
+  const [fetching, setFetching] = useState(false);
   // user hooks
   const [username, setUsername] = useState("");
   const [firstname, setFirstName] = useState("");
@@ -24,6 +26,7 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFetching(true);
     if (password === confirmPassword) {
       dispatch(
         register({
@@ -43,6 +46,7 @@ export default function Signup() {
     } else {
       setError("Passwords do not match");
     }
+    setFetching(false);
     return redirect("/");
   };
 
@@ -134,7 +138,13 @@ export default function Signup() {
           </div>
 
           <SC.primaryColorButtonInverse className={`auth-button ${isValid}`}>
-            Register
+            <div className="register-button-wrapper">
+              {fetching ? (
+                <CircularProgress color="white" size="18px" />
+              ) : (
+                "Register"
+              )}
+            </div>
           </SC.primaryColorButtonInverse>
         </form>
       </SC.authContainer>

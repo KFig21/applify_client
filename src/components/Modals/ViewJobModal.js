@@ -13,6 +13,7 @@ export default function ViewJobModal({ setViewJobModal, job }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   const [isFav, setIsFav] = useState(false);
+  let jobRes = job.result === "waiting" ? "unresolved" : "resolved";
 
   // get favorite status
   useEffect(() => {
@@ -120,8 +121,12 @@ export default function ViewJobModal({ setViewJobModal, job }) {
             <SC.viewGrid className="view-location">
               <SC.subtextOnBgColor>Status:</SC.subtextOnBgColor>
               <SC.ST_cell_status className="board-job-cell view min80">
-                <div className={`job-status-res-container view ${job.status}`}>
-                  <span className={`job-status-res status ${job.status}`}>
+                <div
+                  className={`job-status-res-container view ${job.status} ${jobRes}`}
+                >
+                  <span
+                    className={`job-status-res status ${job.status} ${jobRes}`}
+                  >
                     {job.status}
                   </span>
                 </div>

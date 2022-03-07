@@ -1,7 +1,15 @@
 import React from "react";
 import SC from "../../../../themes/StyledComponents";
 
-export default function AppliedInput({ applied, setApplied }) {
+export default function AppliedInput({ applied, setApplied, setStatus }) {
+  const handleNo = () => {
+    setStatus("waiting");
+    setApplied(false);
+  };
+  const handleYes = () => {
+    setStatus("applied");
+    setApplied(true);
+  };
   return (
     <div className="job-input-container">
       <span className="input-label">Applied</span>
@@ -19,7 +27,7 @@ export default function AppliedInput({ applied, setApplied }) {
               name="applied"
               id="applied-yes"
               className="job-radio-input"
-              onChange={() => setApplied(true)}
+              onChange={() => handleYes()}
               checked={applied}
             />
           </div>
@@ -35,7 +43,7 @@ export default function AppliedInput({ applied, setApplied }) {
               name="applied"
               id="applied-no"
               className="job-radio-input"
-              onChange={() => setApplied(false)}
+              onChange={() => handleNo()}
             />
           </div>
         </div>
