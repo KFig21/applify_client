@@ -208,7 +208,9 @@ export default function ViewJobModal({ setViewJobModal, job }) {
             {job.notes && (
               <SC.viewGrid className="view-location notes">
                 <SC.subtextOnBgColor>Notes:</SC.subtextOnBgColor>
-                <SC.textOnBgColor style={{ whiteSpace: "pre-wrap" }}>
+                <SC.textOnBgColor
+                  style={{ whiteSpace: "pre-wrap", lineBreak: "anywhere" }}
+                >
                   {job.notes}
                 </SC.textOnBgColor>
               </SC.viewGrid>
