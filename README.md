@@ -4,7 +4,6 @@
 
 <p>Applify API repo - <a href="https://github.com/KFig21/applify_api" target="_blank" rel="noopener noreferrer">click here!</a></p>
 
-
 <h3>Summary</h3>
 <p>While on my job search I decided to build a web app that would assist me in the process. Applify is built with the MERN stack, React sticky-tables, Styled-components, and JWT authentication. The goal of this project is to help simplify and streamline the job search process by allowing users to track their applications and store their credientials in easily accessible quick-links.</p>
 
@@ -41,7 +40,11 @@
   <li>The quick-links can be re-named and switched between link/text types.</li>
   <li>Styled components used to create multiple themes.</li>
  </ul>
- 
+
+ <h3>Demo GIF</h3>
+
+![](demo.gif)
+
 ---
 
 <h3>Thanks for checking out my project! Any && all feedback is appreciated!</h3>
