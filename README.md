@@ -22,7 +22,7 @@
 
  <h3>Features:</h3>
  <ul>
-  <li>MongoDB used as the database</li>
+  <li>Responsive Design</li>
   <li>Create a profile or use the test account. Signup/Login/Logout authentication using JSON web token.</li>
   <li>Users are allowed to have up to 10 different job searches.</li>
   <li>Each Job search can hold up to 999 applications/listings.</li>
