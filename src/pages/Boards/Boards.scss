@@ -7,9 +7,9 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: calc(100vh - $navHeight);
   overflow: hidden;
   font-family: Poppins, sans-serif;
+  max-height: 100%;
 
   .boards-header {
     font-family: "poppins", sans-serif;

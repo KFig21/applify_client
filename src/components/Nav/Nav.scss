@@ -16,6 +16,7 @@
   @include mobile {
     top: unset;
     bottom: 0px;
+    position: fixed;
   }
 
   .nav-list-container {
