@@ -8,4 +8,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include mobile {
+    padding-top: unset;
+  }
 }

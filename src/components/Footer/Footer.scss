@@ -14,8 +14,7 @@
   z-index: 4;
 
   @include mobile {
-    bottom: unset;
-    top: 0px;
+    display: none;
   }
 
   .footer-container {
