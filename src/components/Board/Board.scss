@@ -5,18 +5,30 @@
   max-width: 90%;
   min-width: 90%;
   overflow-y: hidden;
+  overflow-x: hidden;
 
   .table-detail-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 10px;
+
+    @include mobile {
+      flex-direction: column;
+      padding: 0px 10px 10px 0px;
+    }
+
     .table-name {
       position: relative;
       font-size: 30px;
       font-weight: 500;
       padding: 0px 10px;
       margin-right: 20px;
+
+      @include mobile {
+        font-size: 26px;
+        padding: 5px 0px;
+      }
 
       .edit-board-icon {
         position: absolute;
@@ -40,22 +52,35 @@
           border-right: none;
         }
       }
+
+      @include mobile {
+        font-size: 15px;
+        margin: 5px;
+      }
     }
-    .filter-icon-container {
+
+    .table-header-buttons {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px;
-      margin-left: 15px;
-      .filter-icon {
-        max-width: 20px;
-        min-width: 20px;
-        max-height: 20px;
-        min-height: 20px;
+      @include mobile {
+        margin: 5px;
       }
 
-      .filter-text {
-        padding-top: 2px;
+      .filter-icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        margin-left: 15px;
+        .filter-icon {
+          max-width: 20px;
+          min-width: 20px;
+          max-height: 20px;
+          min-height: 20px;
+        }
+
+        .filter-text {
+          padding-top: 2px;
+        }
       }
     }
   }
@@ -221,6 +246,10 @@
         text-align: center;
         padding: 0px 10px;
         font-weight: 500;
+
+        @include mobile {
+          min-width: 120px;
+        }
       }
 
       .icon-container {

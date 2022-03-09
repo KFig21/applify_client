@@ -26,12 +26,13 @@ export default function Settings({ setCurrentPage, setTheme }) {
     <div className="settings-page">
       <SC.gradientText>Settings</SC.gradientText>
       <SC.homeContentContainer className="settings-container">
+        <SC.fadeContainer></SC.fadeContainer>
         <div className="settings-section-container">
           <div className="settings-input-container-w-radio">
             <SC.textOnBgColor className="input-label">
               Select a theme
             </SC.textOnBgColor>
-            <SC.settingsInputContainer className="settings-input-container-w-radio">
+            <SC.settingsInputContainer className="settings-radio-container">
               <div className="settings-radio-buttons-container">
                 <ThemeButton name="Dark Aqua" setTheme={setTheme} />
                 <ThemeButton name="Dark Green" setTheme={setTheme} />
@@ -51,6 +52,7 @@ export default function Settings({ setCurrentPage, setTheme }) {
             Logout
           </SC.primaryColorButtonInverse>
         </div>
+        <SC.fadeContainer className="bottom"></SC.fadeContainer>
       </SC.homeContentContainer>
     </div>
   );

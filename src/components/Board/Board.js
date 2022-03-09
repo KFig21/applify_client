@@ -695,27 +695,29 @@ export default function Board() {
             Waiting - {board.waiting}
           </SC.textOnBgColor>
         </SC.boardStats>
-        {/* ADD JOBS */}
-        {jobs.length < 1000 && (
-          <SC.primaryColorButtonInverse onClick={() => handleCreateNewJob()}>
-            + Add a job
-          </SC.primaryColorButtonInverse>
-        )}
-        {/* FILTER JOBS */}
-        {jobs.length > 1 && (
-          <SC.primaryColorButtonInverse
-            className={`filter-icon-container ${isFiltered && " filtered"}`}
-            onClick={() => handleFilterModal()}
-          >
-            <FilterAltIcon className="filter-icon" />
-            {filterCol === "none" && filter === "none" && (
-              <span className="filter-text">filter</span>
-            )}
-            {filterCol !== "none" && filter !== "none" && (
-              <strong className="filter-text">{`${filterCol}: ${filter}`}</strong>
-            )}
-          </SC.primaryColorButtonInverse>
-        )}
+        <div className="table-header-buttons">
+          {/* ADD JOBS */}
+          {jobs.length < 1000 && (
+            <SC.primaryColorButtonInverse onClick={() => handleCreateNewJob()}>
+              + Add a job
+            </SC.primaryColorButtonInverse>
+          )}
+          {/* FILTER JOBS */}
+          {jobs.length > 1 && (
+            <SC.primaryColorButtonInverse
+              className={`filter-icon-container ${isFiltered && " filtered"}`}
+              onClick={() => handleFilterModal()}
+            >
+              <FilterAltIcon className="filter-icon" />
+              {filterCol === "none" && filter === "none" && (
+                <span className="filter-text">filter</span>
+              )}
+              {filterCol !== "none" && filter !== "none" && (
+                <strong className="filter-text">{`${filterCol}: ${filter}`}</strong>
+              )}
+            </SC.primaryColorButtonInverse>
+          )}
+        </div>
       </div>
       {pageloaded ? (
         <div className="jobs-table-container">

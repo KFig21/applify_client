@@ -36,11 +36,25 @@
         min-height: 30px;
         margin: 7px 7px;
 
+        @include mobile {
+          min-width: 26px;
+          max-width: 26px;
+          max-height: 26px;
+          min-height: 26px;
+          margin: 5px 5px;
+        }
+
         .favorite-icon {
           min-width: 30px;
           max-width: 30px;
           max-height: 30px;
           min-height: 30px;
+          @include mobile {
+            min-width: 26px;
+            max-width: 26px;
+            max-height: 26px;
+            min-height: 26px;
+          }
         }
       }
 
@@ -53,16 +67,32 @@
         width: 100%;
         min-width: 430px;
 
+        @include mobile {
+          max-width: 240px;
+          min-width: 240px;
+        }
+
         .board-link-name {
           font-size: 30px;
           font-weight: 500;
           padding-right: 6px;
           padding-bottom: 7px;
+
+          @include mobile {
+            font-size: 24px;
+            padding-bottom: 2px;
+          }
         }
         .board-link-jobs {
           font-size: 20px;
           margin-bottom: 10px;
           margin-left: 15px;
+
+          @include mobile {
+            font-size: 18px;
+            margin-bottom: 7px;
+            margin-left: 12px;
+          }
         }
         .board-link-dates-container {
           display: flex;
@@ -79,6 +109,12 @@
             .date-title {
               min-width: 65px;
             }
+          }
+
+          @include mobile {
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
           }
         }
       }

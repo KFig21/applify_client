@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-pascal-case */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -125,7 +126,7 @@ export default function Home({ setCurrentPage }) {
                   return <></>;
                 })}
                 {boards.length < 3 && (
-                  <div
+                  <a
                     className="board-link-container"
                     onClick={() => setNewBoardModal(true)}
                   >
@@ -137,7 +138,7 @@ export default function Home({ setCurrentPage }) {
                         by clicking here!
                       </SC.textOnBgColor>
                     </SC.boardLinkHome>
-                  </div>
+                  </a>
                 )}
               </div>
             </div>

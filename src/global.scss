@@ -3,7 +3,7 @@ $navHeight: 44px;
 $scollTrackColor: rgba(230, 230, 230, 0);
 $scrollThumbColor: rgb(230, 230, 230);
 
-$width: 768px;
+$width: 800px;
 
 @mixin mobile {
   @media (min-height: 421px) {
@@ -69,7 +69,8 @@ $width: 768px;
   width: 705px;
 
   @include mobile {
-    // height: calc(100vh - $navbarHeight - $footerHeight);
+    min-width: 100%;
+    max-width: 100%;
   }
 }
 

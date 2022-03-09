@@ -19,7 +19,7 @@ export default function PayInput({
 }) {
   return (
     <div className="job-input-container-w-radio">
-      <span className="input-label">Pay</span>
+      <span className="input-label mobile-mb">Pay</span>
       <SC.jobRadioContainer className="job-radio-container">
         {/* PAY TYPE */}
         <PayTypeInput payType={payType} setPayType={setPayType} />

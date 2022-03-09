@@ -5,7 +5,7 @@ import SC from "../../../../themes/StyledComponents";
 export default function StatusInput({ status, setStatus }) {
   return (
     <div className="job-input-container-w-radio">
-      <span className="input-label">Status</span>
+      <span className="input-label mobile-mb">Status</span>
       <SC.jobRadioContainer className="job-radio-container">
         <SC.subtextOnBgColor>
           furthest progression of the application:

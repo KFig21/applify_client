@@ -35,6 +35,41 @@ const maxW =
   colWidth_pay +
   150;
 
+const colWidth_favorite_MOBILE = 40;
+const colWidth_company_MOBILE = 100;
+const colWidth_position_MOBILE = 100;
+const colWidth_edit_MOBILE = 40;
+const colWidth_view_MOBILE = 40;
+const colWidth_applied_MOBILE = 0;
+const colWidth_appDate_MOBILE = 0;
+const colWidth_city_MOBILE = 0;
+const colWidth_locationState_MOBILE = 0;
+const colWidth_remote_MOBILE = 0;
+const colWidth_status_MOBILE = 0;
+const colWidth_result_MOBILE = 0;
+const colWidth_jobType_MOBILE = 0;
+const colWidth_jobSite_MOBILE = 0;
+const colWidth_link_MOBILE = 0;
+const colWidth_pay_MOBILE = 0;
+const maxW_MOBILE =
+  colWidth_favorite_MOBILE +
+  colWidth_company_MOBILE +
+  colWidth_position_MOBILE +
+  colWidth_edit_MOBILE +
+  colWidth_view_MOBILE +
+  colWidth_applied_MOBILE +
+  colWidth_appDate_MOBILE +
+  colWidth_city_MOBILE +
+  colWidth_locationState_MOBILE +
+  colWidth_remote_MOBILE +
+  colWidth_status_MOBILE +
+  colWidth_result_MOBILE +
+  colWidth_jobType_MOBILE +
+  colWidth_jobSite_MOBILE +
+  colWidth_link_MOBILE +
+  colWidth_pay_MOBILE +
+  150;
+
 const SC = {
   // ---------- APP.JS ----------
   mainContent: styled.div`
@@ -196,15 +231,20 @@ const SC = {
     height: 100%;
     position: relative;
     overflow: visible !important;
-    &:hover {
-      background-color: ${(props) =>
-        props.theme.colors.primaryColor} !important;
-      color: ${(props) => props.theme.colors.textOnPrimaryColor} !important;
-    }
-    &:hover {
-      &.boards {
-        background-color: ${(props) =>
-          props.theme.colors.primaryColor} !important;
+
+    @media (min-height: 421px) {
+      @media (min-width: 800px) {
+        &:hover {
+          background-color: ${(props) =>
+            props.theme.colors.primaryColor} !important;
+          color: ${(props) => props.theme.colors.textOnPrimaryColor} !important;
+        }
+        &:hover {
+          &.boards {
+            background-color: ${(props) =>
+              props.theme.colors.primaryColor} !important;
+          }
+        }
       }
     }
   `,
@@ -214,12 +254,18 @@ const SC = {
     cursor: pointer;
     background-color: ${(props) =>
       props.theme.colors.navBackgroundColor} !important;
-    &:hover {
-      background-color: ${(props) =>
-        props.theme.colors.primaryColor} !important;
 
-      .boards {
-        color: ${(props) => props.theme.colors.textOnPrimaryColor} !important;
+    @media (min-height: 421px) {
+      @media (min-width: 800px) {
+        &:hover {
+          background-color: ${(props) =>
+            props.theme.colors.primaryColor} !important;
+
+          .boards {
+            color: ${(props) =>
+              props.theme.colors.textOnPrimaryColor} !important;
+          }
+        }
       }
     }
   `,
@@ -563,6 +609,24 @@ const SC = {
         props.theme.colors.inputBackgroundColor} !important;
       border-color: ${(props) => props.theme.colors.primaryColor} !important;
     }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${(props) =>
+        props.theme.colors.primaryColorFaded} !important;
+      &:hover {
+        background-color: ${(props) =>
+          props.theme.colors.primaryColor} !important;
+      }
+    }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        width: 90%;
+        min-width: 90%;
+        max-width: 90%;
+        height: 100px;
+      }
+    }
   `,
 
   // ---------- VIEW JOB ----------
@@ -573,11 +637,23 @@ const SC = {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        font-size: 22px;
+      }
+    }
   `,
   viewJobCompany: styled.div`
     font-size: 22px;
     font-weight: 600;
     padding-bottom: 10px;
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        font-size: 20px;
+      }
+    }
   `,
   viewPositionAndJob: styled.div`
     width: 100%;
@@ -673,6 +749,19 @@ const SC = {
     ::-webkit-scrollbar-corner {
       background-color: transparent !important;
     }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        overflow-x: hidden !important;
+        max-height: 60vh;
+      }
+    }
+    @media (max-height: 740px) {
+      @media (max-width: 800px) {
+        overflow-x: hidden !important;
+        max-height: 50vh;
+      }
+    }
   `,
   ST_header_header: styled.div`
     color: ${(props) => props.theme.colors.tableHeaderColor} !important;
@@ -685,14 +774,24 @@ const SC = {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     clip-path: inset(0px 0px -10px 0px);
     max-width: ${maxW}px !important;
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        max-width: ${maxW_MOBILE}px !important;
+      }
+    }
   `,
   ST_header_tr: styled.div`
     max-width: ${maxW}px !important;
     color: ${(props) => props.theme.colors.tableHeaderColor} !important;
     background-color: ${(props) =>
       props.theme.colors.tableHeaderBgColor} !important;
-    // border-bottom: solid ${(props) => props.theme.colors.tableBorderPx}
-    //   ${(props) => props.theme.colors.tableBorderColor};
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        max-width: ${maxW_MOBILE}px !important;
+      }
+    }
   `,
   ST_header_th: styled.div`
     padding: 7px 0px;
@@ -729,16 +828,41 @@ const SC = {
         border-bottom: solid 3px
           ${(props) => props.theme.colors.navBackgroundColor};
       }
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_favorite_MOBILE}px !important;
+          max-width: ${colWidth_favorite_MOBILE}px !important;
+        }
+      }
     }
     &.company {
       min-width: ${colWidth_company}px !important;
       max-width: ${colWidth_company}px !important;
       left: calc(${colWidth_favorite}px) !important;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_company_MOBILE}px !important;
+          max-width: ${colWidth_company_MOBILE}px !important;
+          left: calc(${colWidth_favorite_MOBILE}px) !important;
+        }
+      }
     }
     &.position {
       min-width: ${colWidth_position}px !important;
       max-width: ${colWidth_position}px !important;
       left: calc(${colWidth_favorite}px + ${colWidth_company}px) !important;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_position_MOBILE}px !important;
+          max-width: ${colWidth_position_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px
+          ) !important;
+        }
+      }
     }
     &.edit {
       min-width: ${colWidth_edit}px !important;
@@ -746,6 +870,17 @@ const SC = {
       left: calc(
         ${colWidth_favorite}px + ${colWidth_company}px + ${colWidth_position}px
       ) !important;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_edit_MOBILE}px !important;
+          max-width: ${colWidth_edit_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
+              ${colWidth_position_MOBILE}px
+          ) !important;
+        }
+      }
     }
     &.view {
       min-width: ${colWidth_view}px !important;
@@ -756,59 +891,161 @@ const SC = {
       ) !important;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
       clip-path: inset(0px -10px 0px 0px);
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_view_MOBILE}px !important;
+          max-width: ${colWidth_view_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
+              ${colWidth_position_MOBILE}px + ${colWidth_edit_MOBILE}px
+          ) !important;
+
+          box-shadow: none;
+          clip-path: none;
+        }
+      }
     }
     &.applied {
       min-width: ${colWidth_applied}px;
       max-width: ${colWidth_applied}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_applied_MOBILE}px !important;
+          max-width: ${colWidth_applied_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.appDate {
       min-width: ${colWidth_appDate}px;
       max-width: ${colWidth_appDate}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_appDate_MOBILE}px !important;
+          max-width: ${colWidth_appDate_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.city {
       min-width: ${colWidth_city}px;
       max-width: ${colWidth_city}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_city_MOBILE}px !important;
+          max-width: ${colWidth_city_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.locationState {
       min-width: ${colWidth_locationState}px;
       max-width: ${colWidth_locationState}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_locationState_MOBILE}px !important;
+          max-width: ${colWidth_locationState_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.remote {
       min-width: ${colWidth_remote}px;
       max-width: ${colWidth_remote}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_remote_MOBILE}px !important;
+          max-width: ${colWidth_remote_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.status {
       min-width: ${colWidth_status}px;
       max-width: ${colWidth_status}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_status_MOBILE}px !important;
+          max-width: ${colWidth_status_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.result {
       min-width: ${colWidth_result}px;
       max-width: ${colWidth_result}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_result_MOBILE}px !important;
+          max-width: ${colWidth_result_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.jobType {
       min-width: ${colWidth_jobType}px;
       max-width: ${colWidth_jobType}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_jobType_MOBILE}px !important;
+          max-width: ${colWidth_jobType_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.jobSite {
       min-width: ${colWidth_jobSite}px;
       max-width: ${colWidth_jobSite}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_jobSite_MOBILE}px !important;
+          max-width: ${colWidth_jobSite_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.link {
       min-width: ${colWidth_link}px;
       max-width: ${colWidth_link}px;
       text-align: center;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_link_MOBILE}px !important;
+          max-width: ${colWidth_link_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.pay {
       min-width: ${colWidth_pay}px;
       max-width: ${colWidth_pay}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_pay_MOBILE}px !important;
+          max-width: ${colWidth_pay_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
   `,
   ST_cell_sticky: styled.div`
@@ -826,15 +1063,8 @@ const SC = {
         white-space: nowrap !important;
       }
     }
-    // DIFFER BETWEEN 2 STYLES
+
     background-color: ${(props) => props.theme.colors.tableAlternateRowColor};
-    // &.even {
-    //   background-color: ${(props) =>
-      props.theme.colors.tableAlternateRowColor};
-    // }
-    // &.odd {
-    //   background-color: ${(props) => props.theme.colors.backgroundColor};
-    // }
 
     &.center {
       justify-content: center;
@@ -842,16 +1072,40 @@ const SC = {
     &.favorite {
       min-width: ${colWidth_favorite}px !important;
       max-width: ${colWidth_favorite}px !important;
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_favorite_MOBILE}px !important;
+          max-width: ${colWidth_favorite_MOBILE}px !important;
+        }
+      }
     }
     &.company {
       min-width: ${colWidth_company}px !important;
       max-width: ${colWidth_company}px !important;
       left: calc(${colWidth_favorite}px) !important;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_company_MOBILE}px !important;
+          max-width: ${colWidth_company_MOBILE}px !important;
+          left: calc(${colWidth_favorite_MOBILE}px) !important;
+        }
+      }
     }
     &.position {
       min-width: ${colWidth_position}px !important;
       max-width: ${colWidth_position}px !important;
       left: calc(${colWidth_favorite}px + ${colWidth_company}px) !important;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_position_MOBILE}px !important;
+          max-width: ${colWidth_position_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px
+          ) !important;
+        }
+      }
     }
     &.edit {
       min-width: ${colWidth_edit}px !important;
@@ -859,10 +1113,19 @@ const SC = {
       left: calc(
         ${colWidth_favorite}px + ${colWidth_company}px + ${colWidth_position}px
       ) !important;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_edit_MOBILE}px !important;
+          max-width: ${colWidth_edit_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
+              ${colWidth_position_MOBILE}px
+          ) !important;
+        }
+      }
     }
     &.view {
-      // border-right: solid ${(props) => props.theme.colors.tableBorderPx}
-      //   ${(props) => props.theme.colors.tableBorderColor};
       min-width: ${colWidth_view}px !important;
       max-width: ${colWidth_view}px !important;
       left: calc(
@@ -871,6 +1134,20 @@ const SC = {
       ) !important;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
       clip-path: inset(0px -10px 0px 0px);
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_view_MOBILE}px !important;
+          max-width: ${colWidth_view_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
+              ${colWidth_position_MOBILE}px + ${colWidth_edit_MOBILE}px
+          ) !important;
+
+          box-shadow: none;
+          clip-path: none;
+        }
+      }
     }
   `,
   ST_tr: styled.div`
@@ -881,17 +1158,9 @@ const SC = {
     max-height: 32px;
     max-width: ${maxW}px !important;
 
-    // DIFFER BETWEEN 2 STYLES
     border-top: 3px solid ${(props) => props.theme.colors.backgroundColor};
     border-bottom: 3px solid ${(props) => props.theme.colors.backgroundColor};
     background-color: ${(props) => props.theme.colors.tableAlternateRowColor};
-    // &:nth-child(even) {
-    //   background-color: ${(props) =>
-      props.theme.colors.tableAlternateRowColor};
-    // }
-    // &:nth-child(odd) {
-    //   background-color: ${(props) => props.theme.colors.backgroundColor};
-    // }
 
     &:hover {
       background-color: ${(props) =>
@@ -903,6 +1172,12 @@ const SC = {
       .even {
         background-color: ${(props) =>
           props.theme.colors.rowHoverColorPrimary} !important;
+      }
+    }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        max-width: ${maxW_MOBILE}px !important;
       }
     }
   `,
@@ -920,50 +1195,134 @@ const SC = {
     &.applied {
       min-width: ${colWidth_applied}px;
       max-width: ${colWidth_applied}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_applied_MOBILE}px !important;
+          max-width: ${colWidth_applied_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.appDate {
       min-width: ${colWidth_appDate}px;
       max-width: ${colWidth_appDate}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_appDate_MOBILE}px !important;
+          max-width: ${colWidth_appDate_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.city {
       min-width: ${colWidth_city}px;
       max-width: ${colWidth_city}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_city_MOBILE}px !important;
+          max-width: ${colWidth_city_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.locationState {
       min-width: ${colWidth_locationState}px;
       max-width: ${colWidth_locationState}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_locationState_MOBILE}px !important;
+          max-width: ${colWidth_locationState_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.remote {
       min-width: ${colWidth_remote}px;
       max-width: ${colWidth_remote}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_remote_MOBILE}px !important;
+          max-width: ${colWidth_remote_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.status {
       min-width: ${colWidth_status}px;
       max-width: ${colWidth_status}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_status_MOBILE}px !important;
+          max-width: ${colWidth_status_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.result {
       min-width: ${colWidth_result}px;
       max-width: ${colWidth_result}px;
-    }
-    &.status {
-      min-width: ${colWidth_status}px;
-      max-width: ${colWidth_status}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_result_MOBILE}px !important;
+          max-width: ${colWidth_result_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.jobType {
       min-width: ${colWidth_jobType}px;
       max-width: ${colWidth_jobType}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_jobType_MOBILE}px !important;
+          max-width: ${colWidth_jobType_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.jobSite {
       min-width: ${colWidth_jobSite}px;
       max-width: ${colWidth_jobSite}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_jobSite_MOBILE}px !important;
+          max-width: ${colWidth_jobSite_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.link {
       min-width: ${colWidth_link}px;
       max-width: ${colWidth_link}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_link_MOBILE}px !important;
+          max-width: ${colWidth_link_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
     &.pay {
       min-width: ${colWidth_pay}px;
       max-width: ${colWidth_pay}px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_pay_MOBILE}px !important;
+          max-width: ${colWidth_pay_MOBILE}px !important;
+          display: none !important;
+        }
+      }
     }
   `,
   ST_cell_status: styled.div`
@@ -1202,18 +1561,29 @@ const SC = {
         ${(props) => props.theme.colors.subtextOnBgColor} !important;
       text-underline-offset: 1px;
     }
-    &:hover {
-      background: ${(props) => props.theme.colors.glassGradient};
-      background-color: ${(props) =>
-        props.theme.colors.rowHoverColorPrimary} !important;
-      border-color: ${(props) => props.theme.colors.primaryColor} !important;
-      padding: 12px 24px 9px 4px;
-      margin: 6px 0px;
+    @media (min-height: 421px) {
+      @media (min-width: 800px) {
+        &:hover {
+          background: ${(props) => props.theme.colors.glassGradient};
+          background-color: ${(props) =>
+            props.theme.colors.rowHoverColorPrimary} !important;
+          border-color: ${(props) =>
+            props.theme.colors.primaryColor} !important;
+          padding: 12px 24px 9px 4px;
+          margin: 6px 0px;
 
-      .board-link-name {
-        text-decoration: underline solid 3px
-          ${(props) => props.theme.colors.primaryColor} !important;
-        text-underline-offset: 1px;
+          .board-link-name {
+            text-decoration: underline solid 3px
+              ${(props) => props.theme.colors.primaryColor} !important;
+            text-underline-offset: 1px;
+          }
+        }
+      }
+    }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        min-width: 80%;
       }
     }
   `,
@@ -1240,6 +1610,7 @@ const SC = {
     }
     ::-webkit-scrollbar-track {
       margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     &.boards-container {
@@ -1249,6 +1620,18 @@ const SC = {
         margin-bottom: 5px;
       }
     }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        min-width: 80%;
+        padding: 0px 20px !important;
+        border-radius: 10px;
+        ::-webkit-scrollbar-track {
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+      }
+    }
   `,
   boardLinkHome: styled.div`
     color: ${(props) => props.theme.colors.textOnBgColor} !important;
@@ -1256,8 +1639,6 @@ const SC = {
       props.theme.colors.quickLinkBgColor} !important;
     border-radius: 10px;
     padding: 5px 20px 6px 20px;
-    min-width: 175px;
-    max-width: 175px;
     font-size: 16px;
     cursor: pointer;
     display: flex;
@@ -1271,16 +1652,38 @@ const SC = {
         ${(props) => props.theme.colors.subtextOnBgColor} !important;
       text-underline-offset: 1px;
     }
-    &:hover {
-      background: ${(props) => props.theme.colors.glassGradient};
-      background-color: ${(props) =>
-        props.theme.colors.rowHoverColorPrimary} !important;
-      padding: 9px 24px 10px 24px;
-      margin: 6px;
-      .board-link-name {
-        text-decoration: underline solid 3px
-          ${(props) => props.theme.colors.primaryColor} !important;
-        text-underline-offset: 1px;
+
+    @media (min-height: 421px) {
+      @media (min-width: 801px) {
+        &:hover {
+          background: ${(props) => props.theme.colors.glassGradient};
+          background-color: ${(props) =>
+            props.theme.colors.rowHoverColorPrimary} !important;
+          padding: 9px 24px 10px 24px;
+          margin: 6px;
+          .board-link-name {
+            text-decoration: underline solid 3px
+              ${(props) => props.theme.colors.primaryColor} !important;
+            text-underline-offset: 1px;
+          }
+        }
+      }
+    }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        &:focus {
+          background: ${(props) => props.theme.colors.glassGradient};
+          background-color: ${(props) =>
+            props.theme.colors.rowHoverColorPrimary} !important;
+          padding: 9px 24px 10px 24px;
+          margin: 6px;
+          .board-link-name {
+            text-decoration: underline solid 3px
+              ${(props) => props.theme.colors.primaryColor} !important;
+            text-underline-offset: 1px;
+          }
+        }
       }
     }
   `,
@@ -1308,6 +1711,14 @@ const SC = {
 
     &:hover {
       transform: translateY(-4%);
+    }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        &:hover {
+          transform: translateY(0%);
+        }
+      }
     }
   `,
   quickLink: styled.div`
@@ -1410,9 +1821,20 @@ const SC = {
     cursor: pointer;
     transition: all ease 0.2s;
 
-    &:hover {
-      padding: 8px 15px;
-      margin: 7px;
+    @media (min-height: 421px) {
+      @media (min-width: 800px) {
+        &:hover {
+          padding: 8px 15px;
+          margin: 7px;
+        }
+      }
+    }
+
+    @media (min-height: 421px) {
+      @media (max-width: 800px) {
+        margin: 5px;
+        min-width: 160px;
+      }
     }
   `,
   settingsInputContainer: styled.div`

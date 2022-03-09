@@ -68,6 +68,11 @@
   z-index: 5;
   transition: all ease 1s;
 
+  @include mobile {
+    margin-bottom: $navHeight;
+    margin-top: unset;
+  }
+
   &.in {
     animation: modalUp 1s ease;
   }
@@ -86,10 +91,16 @@
     border-radius: 20px;
     max-height: 80vh;
     overflow-y: overlay;
+    overflow-x: hidden;
     position: relative;
     width: 100%;
     max-width: 576px;
     transition: all ease 1s;
+
+    @include mobile {
+      width: 75%;
+      padding: 0px 20px 20px 20px;
+    }
 
     &.in {
       animation: formUp 1s ease;
@@ -107,13 +118,18 @@
       max-width: 650px;
     }
 
+    &.view {
+      @include mobile {
+        padding: 0px 10px;
+      }
+    }
+
     .modal-title-container {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: auto;
-      backdrop-filter: blur(12px);
-      padding: 20px 40px 20px 30px;
+      padding: 20px 40px 20px 40px;
       border-radius: 20px 20px 0px 0px;
       position: fixed;
       left: 50%;
@@ -122,13 +138,17 @@
       width: inherit;
       max-width: inherit;
 
-      &.board-name-edit {
-        backdrop-filter: none;
+      @include mobile {
+        padding: 20px;
       }
 
       .modal-name {
         font-size: 26px;
         font-weight: 500;
+
+        @include mobile {
+          font-size: 20px;
+        }
       }
 
       .icon-container {
@@ -154,6 +174,10 @@
       justify-content: center;
       margin-top: 90px;
 
+      @include mobile {
+        margin-top: 80px;
+      }
+
       &.resume {
         align-items: center;
         width: 100%;
@@ -166,6 +190,10 @@
         border: none;
         min-width: 380px;
         font-size: 20px;
+
+        @include mobile {
+          min-width: 250px;
+        }
 
         &.new-board {
           margin: 10px 0px 15px 0px;
@@ -245,6 +273,12 @@
         box-sizing: border-box;
         width: 100%;
 
+        @include mobile {
+          flex-direction: column;
+          align-items: start;
+          margin-bottom: 5px;
+        }
+
         &.date-input {
           justify-content: flex-start;
         }
@@ -254,6 +288,15 @@
           padding-right: 12px;
           min-width: 150px;
           position: relative;
+
+          @include mobile {
+            opacity: 0.7;
+            margin-bottom: -5px;
+
+            &.mobile-mb {
+              margin-bottom: 7px;
+            }
+          }
 
           &.edit-boardname {
             min-width: unset;
@@ -295,6 +338,10 @@
             height: 100%;
             margin-top: 6px;
 
+            @include mobile {
+              width: 100%;
+            }
+
             .job-radio-wrapper {
               position: relative;
               margin: 5px 7px;
@@ -323,6 +370,10 @@
 
               align-items: center;
               justify-content: center;
+
+              @include mobile {
+                width: 100%;
+              }
             }
           }
 
@@ -356,6 +407,10 @@
       width: inherit;
       max-width: inherit;
 
+      @include mobile {
+        padding: 10px 10px;
+      }
+
       .modal-view-title {
         .icon-container {
           min-width: 30px;
@@ -363,6 +418,10 @@
           max-height: 30px;
           min-height: 30px;
           margin: 8px 7px 0px 0px;
+
+          @include mobile {
+            margin: 1px 4px 0px 0px;
+          }
 
           .favorite-icon {
             min-width: 30px;
@@ -374,6 +433,10 @@
         .modal-title-company-and-title {
           display: flex;
           flex-direction: column;
+
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          white-space: nowrap !important;
         }
       }
     }
@@ -389,6 +452,12 @@
       .view-details {
         margin-left: 55px;
         margin-top: 112px;
+
+        @include mobile {
+          margin-left: 35px;
+          margin-top: 92px;
+          margin-bottom: 10px;
+        }
       }
     }
   }
