@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/applify_client/static/css/main.6877b408.css",
+    "main.css": "/applify_client/static/css/main.4f3a2b25.css",
     "main.js": "/applify_client/static/js/main.3e8f2bee.js",
     "static/media/linkedin.png": "/applify_client/static/media/linkedin.294256116ccdb7effc47.png",
     "index.html": "/applify_client/index.html",
-    "main.6877b408.css.map": "/applify_client/static/css/main.6877b408.css.map",
+    "main.4f3a2b25.css.map": "/applify_client/static/css/main.4f3a2b25.css.map",
     "main.3e8f2bee.js.map": "/applify_client/static/js/main.3e8f2bee.js.map"
   },
   "entrypoints": [
-    "static/css/main.6877b408.css",
+    "static/css/main.4f3a2b25.css",
     "static/js/main.3e8f2bee.js"
   ]
 }
