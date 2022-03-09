@@ -437,6 +437,12 @@
           overflow: hidden !important;
           text-overflow: ellipsis !important;
           white-space: nowrap !important;
+
+          @include mobile {
+            .position-name {
+              padding-bottom: unset;
+            }
+          }
         }
       }
     }
@@ -454,9 +460,19 @@
         margin-top: 112px;
 
         @include mobile {
-          margin-left: 35px;
-          margin-top: 92px;
-          margin-bottom: 10px;
+          margin-left: 15px;
+          margin-top: 82px;
+          margin-bottom: 15px;
+        }
+
+        .view-notes {
+          white-space: pre-wrap;
+          line-break: auto;
+
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+
+          word-break: break-word;
         }
       }
     }

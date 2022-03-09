@@ -675,6 +675,13 @@ const SC = {
       align-items: flex-start;
       border-top: 2px solid ${(props) => props.theme.colors.subtextOnBgColor};
       margin-top: 12px;
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          grid-template-columns: 1fr;
+          padding-right: 10px !important;
+        }
+      }
     }
   `,
   closeModal: styled.div`
