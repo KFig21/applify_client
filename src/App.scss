@@ -12,4 +12,9 @@
   @include mobile {
     padding-top: unset;
   }
+  @include mobileKeyboard {
+    padding-top: unset;
+    height: calc(100vh);
+    min-height: calc(100vh);
+  }
 }

@@ -16,6 +16,9 @@
   @include mobile {
     display: none;
   }
+  @include mobileKeyboard {
+    display: none;
+  }
 
   .footer-container {
     display: flex;

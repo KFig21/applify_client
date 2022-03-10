@@ -10,11 +10,12 @@ const persistedState = loadState();
 
 const middleWare = [thunk];
 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   rootReducer,
   persistedState,
-  compose(applyMiddleware(...middleWare)),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancer(applyMiddleware(...middleWare))
 );
 
 store.subscribe(

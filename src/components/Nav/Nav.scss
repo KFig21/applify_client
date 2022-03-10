@@ -19,6 +19,10 @@
     position: fixed;
   }
 
+  @include mobileKeyboard {
+    display: none;
+  }
+
   .nav-list-container {
     display: flex;
     align-items: center;

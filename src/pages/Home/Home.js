@@ -89,7 +89,6 @@ export default function Home({ setCurrentPage }) {
     setCurrentPage("home");
     fetchBoards();
     fetchQuickLinks();
-    console.log(user);
   }, [user]);
 
   return (

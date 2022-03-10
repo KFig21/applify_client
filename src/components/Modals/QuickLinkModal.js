@@ -39,7 +39,6 @@ export default function QuickLinkModal({ setQuickLinkModal, linkToEdit }) {
   };
 
   useEffect(() => {
-    console.log(type);
     if (value) {
       if (value.length > 0) {
         setIsValid(true);

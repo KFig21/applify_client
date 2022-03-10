@@ -72,6 +72,11 @@
     margin-bottom: $navHeight;
     margin-top: unset;
   }
+  @include mobileKeyboard {
+    margin-bottom: unset;
+    margin-top: unset;
+    height: 100%;
+  }
 
   &.in {
     animation: modalUp 1s ease;
@@ -101,6 +106,10 @@
       width: 75%;
       padding: 0px 20px 20px 20px;
     }
+    @include mobileKeyboard {
+      width: 75%;
+      padding: 0px 20px 20px 20px;
+    }
 
     &.in {
       animation: formUp 1s ease;
@@ -122,6 +131,9 @@
       @include mobile {
         padding: 0px 10px;
       }
+      @include mobileKeyboard {
+        padding: 0px 10px;
+      }
     }
 
     .modal-title-container {
@@ -141,12 +153,18 @@
       @include mobile {
         padding: 20px;
       }
+      @include mobileKeyboard {
+        padding: 20px;
+      }
 
       .modal-name {
         font-size: 26px;
         font-weight: 500;
 
         @include mobile {
+          font-size: 20px;
+        }
+        @include mobileKeyboard {
           font-size: 20px;
         }
       }
@@ -177,6 +195,9 @@
       @include mobile {
         margin-top: 80px;
       }
+      @include mobileKeyboard {
+        margin-top: 80px;
+      }
 
       &.resume {
         align-items: center;
@@ -192,6 +213,9 @@
         font-size: 20px;
 
         @include mobile {
+          min-width: 250px;
+        }
+        @include mobileKeyboard {
           min-width: 250px;
         }
 
@@ -278,6 +302,11 @@
           align-items: start;
           margin-bottom: 5px;
         }
+        @include mobileKeyboard {
+          flex-direction: column;
+          align-items: start;
+          margin-bottom: 5px;
+        }
 
         &.date-input {
           justify-content: flex-start;
@@ -290,6 +319,14 @@
           position: relative;
 
           @include mobile {
+            opacity: 0.7;
+            margin-bottom: -5px;
+
+            &.mobile-mb {
+              margin-bottom: 7px;
+            }
+          }
+          @include mobileKeyboard {
             opacity: 0.7;
             margin-bottom: -5px;
 
@@ -341,6 +378,9 @@
             @include mobile {
               width: 100%;
             }
+            @include mobileKeyboard {
+              width: 100%;
+            }
 
             .job-radio-wrapper {
               position: relative;
@@ -372,6 +412,9 @@
               justify-content: center;
 
               @include mobile {
+                width: 100%;
+              }
+              @include mobileKeyboard {
                 width: 100%;
               }
             }
@@ -410,6 +453,9 @@
       @include mobile {
         padding: 10px 10px;
       }
+      @include mobileKeyboard {
+        padding: 10px 10px;
+      }
 
       .modal-view-title {
         .icon-container {
@@ -420,6 +466,9 @@
           margin: 8px 7px 0px 0px;
 
           @include mobile {
+            margin: 1px 4px 0px 0px;
+          }
+          @include mobileKeyboard {
             margin: 1px 4px 0px 0px;
           }
 
@@ -443,6 +492,11 @@
               padding-bottom: unset;
             }
           }
+          @include mobileKeyboard {
+            .position-name {
+              padding-bottom: unset;
+            }
+          }
         }
       }
     }
@@ -460,6 +514,12 @@
         margin-top: 112px;
 
         @include mobile {
+          margin-left: 15px;
+          margin-top: 82px;
+          margin-bottom: 15px;
+        }
+
+        @include mobileKeyboard {
           margin-left: 15px;
           margin-top: 82px;
           margin-bottom: 15px;

@@ -338,6 +338,15 @@ const SC = {
     color: ${(props) => props.theme.colors.navTextColor} !important;
     box-shadow: ${(props) =>
       props.theme.colors.modalContainerBoxShadow} !important;
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${(props) =>
+        props.theme.colors.primaryColorFaded} !important;
+      &:hover {
+        background-color: ${(props) =>
+          props.theme.colors.primaryColor} !important;
+      }
+    }
   `,
   authInput: styled.input`
     background-color: transparent !important;
