@@ -410,6 +410,11 @@ const SC = {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+
+    // firefox does not allow custom underlines
+    @-moz-document url-prefix() {
+      text-decoration: none !important;
+    }
   `,
   jobFormRadioLabel: styled.label`
     color: ${(props) => props.theme.colors.textOnBgColor} !important;
@@ -770,13 +775,21 @@ const SC = {
       @media (max-width: 800px) {
         overflow-x: hidden !important;
         max-height: 60vh;
+        padding: 0px;
       }
     }
     @media (max-height: 740px) {
       @media (max-width: 800px) {
         overflow-x: hidden !important;
         max-height: 50vh;
+        padding: 0px;
       }
+    }
+
+    // firefox does not allow overflow:overlay
+    @-moz-document url-prefix() {
+      overflow: scroll;
+      border-radius: 0px;
     }
   `,
   ST_header_header: styled.div`
@@ -1616,6 +1629,13 @@ const SC = {
     box-shadow: ${(props) => props.theme.colors.containerShadow} !important;
 
     overflow: overlay;
+
+    // firefox does not allow overflow:overlay
+    @-moz-document url-prefix() {
+      overflow: scroll;
+      border-radius: 0px;
+    }
+
     ::-webkit-scrollbar-thumb {
       background-color: ${(props) =>
         props.theme.colors.primaryColorFaded} !important;
@@ -1869,6 +1889,11 @@ const SC = {
     text-decoration: underline solid 4px
       ${(props) => props.theme.colors.primaryColor} !important;
     text-underline-offset: 0.5px;
+
+    // firefox does not allow custom underlines
+    @-moz-document url-prefix() {
+      text-decoration: none !important;
+    }
   `,
   primaryBorderColor: styled.div`
     border-color: ${(props) => props.theme.colors.primaryColor} !important;
@@ -1890,6 +1915,11 @@ const SC = {
     width: 100%;
     z-index: 5;
     background-color: ${(props) => props.theme.colors.modalBackgroundColor};
+
+    // firefox specific
+    @-moz-document url-prefix() {
+      background-color: rgba(100, 100, 100, 0.8);
+    }
   `,
   footerContent: styled.span`
     color: ${(props) => props.theme.colors.subtextOnBgColor} !important;

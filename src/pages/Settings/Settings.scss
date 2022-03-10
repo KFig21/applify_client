@@ -144,6 +144,11 @@
 
       @include mobile {
         width: 80%;
+
+        // firefox specific
+        @-moz-document url-prefix() {
+          padding-bottom: 35px;
+        }
       }
     }
   }

@@ -88,6 +88,11 @@
 
         @include mobile {
           grid-template-columns: 1fr 1fr;
+
+          // firefox specific
+          @-moz-document url-prefix() {
+            margin-bottom: 20px;
+          }
         }
 
         $jobSiteDimension: 115px;
