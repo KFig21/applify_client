@@ -81,26 +81,48 @@ function App() {
                   <Route
                     exact
                     path="/"
-                    element={<Home setCurrentPage={setCurrentPage} />}
+                    element={
+                      user ? (
+                        <Home setCurrentPage={setCurrentPage} />
+                      ) : (
+                        <Login />
+                      )
+                    }
                   ></Route>
                   <Route
                     exact
                     path="/boards"
-                    element={<Boards setCurrentPage={setCurrentPage} />}
+                    element={
+                      user ? (
+                        <Boards setCurrentPage={setCurrentPage} />
+                      ) : (
+                        <Login />
+                      )
+                    }
                   ></Route>
                   <Route
                     exact
                     path="/board/:id"
-                    element={<Board setCurrentPage={setCurrentPage} />}
+                    element={
+                      user ? (
+                        <Board setCurrentPage={setCurrentPage} />
+                      ) : (
+                        <Login />
+                      )
+                    }
                   ></Route>
                   <Route
                     exact
                     path="/settings"
                     element={
-                      <Settings
-                        setCurrentPage={setCurrentPage}
-                        setTheme={setTheme}
-                      />
+                      user ? (
+                        <Settings
+                          setCurrentPage={setCurrentPage}
+                          setTheme={setTheme}
+                        />
+                      ) : (
+                        <Login />
+                      )
                     }
                   ></Route>
                   <Route

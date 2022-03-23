@@ -26,35 +26,55 @@ export default function Login() {
     e.preventDefault();
     setFetching(true);
     if (usermail.length > 0 && password.length > 0) {
-      dispatch(
-        login(
-          {
-            usermail: usermail,
-            password: password,
-          },
-          setErrorHandler
-        )
-      );
-      setUsermail("");
-      setPassword("");
+      const fetchUser = async () => {
+        await dispatch(
+          login(
+            {
+              usermail: usermail,
+              password: password,
+            },
+            setErrorHandler
+          )
+        );
+      };
+
+      const followUp = async () => {
+        setUsermail("");
+        setPassword("");
+        setFetchingGuest(false);
+      };
+
+      fetchUser().then(() => followUp());
     }
-    setFetching(false);
   };
 
   const justVisiting = () => {
     setFetchingGuest(true);
-    dispatch(
-      login(
-        {
-          usermail: "GuestUser",
-          password: process.env.REACT_APP_TEST_ACCOUNT_PASSWORD,
-        },
-        setErrorHandler
-      )
-    );
-    setUsermail("");
-    setPassword("");
-    setFetchingGuest(false);
+    try {
+      const fetchUser = async () => {
+        await dispatch(
+          login(
+            {
+              usermail: "GuestUser",
+              password: process.env.REACT_APP_TEST_ACCOUNT_PASSWORD,
+            },
+            setErrorHandler
+          )
+        );
+      };
+
+      const followUp = async () => {
+        setUsermail("");
+        setPassword("");
+        setFetchingGuest(false);
+      };
+
+      fetchUser().then(() => followUp());
+    } catch (err) {
+      setUsermail("");
+      setPassword("");
+      setFetchingGuest(false);
+    }
   };
 
   useEffect(() => {

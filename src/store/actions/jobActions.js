@@ -14,6 +14,7 @@ export const createNewJob = (data, setErrorHandler) => {
     axios
       .post(`${url}/jobs/new`, data)
       .then((jobs) => {
+        setErrorHandler({ error: false, message: "" });
         dispatch({
           type: JOB_NEW,
           jobs,

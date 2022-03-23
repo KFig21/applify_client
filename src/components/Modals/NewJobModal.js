@@ -44,47 +44,76 @@ export default function NewJobModal({ setNewJobModal, board }) {
   const [favorite, setFavorite] = useState(false);
 
   const handleAddNewJob = () => {
-    dispatch(
-      createNewJob(
-        {
-          user: state._id,
-          board: board._id,
-          company: company,
-          position: position,
-          applied: applied,
-          appDate: appDate,
-          city: city,
-          locationState: locationState,
-          remote: remote,
-          status: status,
-          result: result,
-          jobtype: jobtype,
-          jobsite: jobsite,
-          username: username,
-          password: password,
-          link: link,
-          payType: payType,
-          payScale: payScale,
-          payMin: payMin,
-          payMax: payMax,
-          pay: pay,
-          notes: notes,
-          favorite: favorite,
-        },
-        setErrorHandler
-      )
-    );
-    setNewJobModal(false);
-    window.location.reload();
+    try {
+      const sendJobData = async () => {
+        try {
+          await dispatch(
+            createNewJob(
+              {
+                user: state._id,
+                board: board._id,
+                company: company,
+                position: position,
+                applied: applied,
+                appDate: appDate,
+                city: city,
+                locationState: locationState,
+                remote: remote,
+                status: status,
+                result: result,
+                jobtype: jobtype,
+                jobsite: jobsite,
+                username: username,
+                password: password,
+                link: link,
+                payType: payType,
+                payScale: payScale,
+                payMin: payMin,
+                payMax: payMax,
+                pay: pay,
+                notes: notes,
+                favorite: favorite,
+              },
+              setErrorHandler
+            )
+          );
+        } catch (err) {
+          console.log(err);
+          console.log(errorHandler);
+        }
+      };
+
+      const followUp = async () => {
+        if (errorHandler.error === false) {
+          console.log("bad", errorHandler);
+          setNewJobModal(false);
+          window.location.reload();
+        } else {
+          console.log("good", errorHandler);
+        }
+      };
+
+      sendJobData().then(() => followUp());
+    } catch (err) {
+      console.log(err);
+      console.log(errorHandler);
+    }
   };
 
   useEffect(() => {
-    if (company.length > 0) {
+    if (
+      company.length > 0 &&
+      position.length > 0 &&
+      city.length > 0 &&
+      locationState.length > 0 &&
+      jobsite.length > 0 &&
+      link.length > 0
+    ) {
       setIsValid(true);
     } else {
       setIsValid(false);
     }
-  }, [company]);
+  }, [company, position, city, locationState, jobsite, link]);
 
   // modal animation
   const [animation, setAnimation] = useState(true);
@@ -110,6 +139,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="50"
               placeholder="Company name"
               onChange={(e) => setCompany(e.target.value)}
               required
@@ -121,6 +151,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="50"
               placeholder="Position title"
               onChange={(e) => setPosition(e.target.value)}
               required
@@ -149,6 +180,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="50"
               placeholder="City"
               onChange={(e) => setCity(e.target.value)}
               required
@@ -160,7 +192,8 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
-              placeholder="State"
+              maxLength="2"
+              placeholder="State (NY, PA)"
               onChange={(e) => setLocationState(e.target.value)}
               required
             ></SC.authInput>
@@ -179,6 +212,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="50"
               placeholder="indeed, monster..."
               onChange={(e) => setJobsite(e.target.value)}
               required
@@ -190,6 +224,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="500"
               placeholder="Listing URL"
               onChange={(e) => setLink(e.target.value)}
               required
@@ -206,6 +241,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="50"
               placeholder="Site username"
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -222,6 +258,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.authInput
               className="modal-input job"
               type="text"
+              maxLength="50"
               placeholder="Site password"
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -243,12 +280,16 @@ export default function NewJobModal({ setNewJobModal, board }) {
             <SC.jobNotesTextarea
               className="modal-input job"
               type="text"
+              maxLength="10000"
               placeholder="Notes about the job (description, requirements, point of contact, shift...)"
               onChange={(e) => setNotes(e.target.value)}
               required
             ></SC.jobNotesTextarea>
           </div>
           {/* BUTTONS */}
+          <div className="error-message-container">
+            {errorHandler.error && "error"}
+          </div>
           <SC.jobButtonContainer className="modal-buttons-container job">
             <SC.primaryColorButtonInverse
               className={`modal-button ${isValid}`}
