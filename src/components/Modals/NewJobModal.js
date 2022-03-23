@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { url } from "../../helpers/Api";
 import { createNewJob } from "../../store/actions/jobActions";
 import SC from "../../themes/StyledComponents";
 import AppliedInput from "./components/job/AppliedInput";
@@ -18,7 +20,6 @@ export default function NewJobModal({ setNewJobModal, board }) {
     error: false,
     message: "",
   });
-  const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   // FORM HOOKS
   const [company, setCompany] = useState("");
@@ -47,53 +48,48 @@ export default function NewJobModal({ setNewJobModal, board }) {
     try {
       const sendJobData = async () => {
         try {
-          await dispatch(
-            createNewJob(
-              {
-                user: state._id,
-                board: board._id,
-                company: company,
-                position: position,
-                applied: applied,
-                appDate: appDate,
-                city: city,
-                locationState: locationState,
-                remote: remote,
-                status: status,
-                result: result,
-                jobtype: jobtype,
-                jobsite: jobsite,
-                username: username,
-                password: password,
-                link: link,
-                payType: payType,
-                payScale: payScale,
-                payMin: payMin,
-                payMax: payMax,
-                pay: pay,
-                notes: notes,
-                favorite: favorite,
-              },
-              setErrorHandler
-            )
-          );
+          await axios
+            .post(`${url}/jobs/new`, {
+              user: state._id,
+              board: board._id,
+              company: company,
+              position: position,
+              applied: applied,
+              appDate: appDate,
+              city: city,
+              locationState: locationState,
+              remote: remote,
+              status: status,
+              result: result,
+              jobtype: jobtype,
+              jobsite: jobsite,
+              username: username,
+              password: password,
+              link: link,
+              payType: payType,
+              payScale: payScale,
+              payMin: payMin,
+              payMax: payMax,
+              pay: pay,
+              notes: notes,
+              favorite: favorite,
+            })
+            .then(() => {
+              setErrorHandler({ error: false, message: "" });
+              setNewJobModal(false);
+              window.location.reload();
+            })
+            .catch((error) => {
+              setErrorHandler({
+                error: true,
+                message: error.response.data.message,
+              });
+            });
         } catch (err) {
           console.log(err);
-          console.log(errorHandler);
         }
       };
-
-      const followUp = async () => {
-        if (errorHandler.error === false) {
-          console.log("bad", errorHandler);
-          setNewJobModal(false);
-          window.location.reload();
-        } else {
-          console.log("good", errorHandler);
-        }
-      };
-
-      sendJobData().then(() => followUp());
+      sendJobData();
     } catch (err) {
       console.log(err);
       console.log(errorHandler);
@@ -288,7 +284,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
           </div>
           {/* BUTTONS */}
           <div className="error-message-container">
-            {errorHandler.error && "error"}
+            {errorHandler.error && errorHandler.message}
           </div>
           <SC.jobButtonContainer className="modal-buttons-container job">
             <SC.primaryColorButtonInverse

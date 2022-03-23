@@ -31,7 +31,7 @@ export const register = (user) => {
   };
 };
 
-export const login = (cred, setErrorHandler) => {
+export const login = (cred, setErrorHandler, setFetching) => {
   return (dispatch) => {
     axios
       .post(`${url}/auth/login`, cred)
@@ -41,6 +41,7 @@ export const login = (cred, setErrorHandler) => {
           type: LOGIN,
           token: token.data,
         });
+        setFetching(false);
       })
       .catch((error) => {
         if (error.response) {
@@ -50,6 +51,7 @@ export const login = (cred, setErrorHandler) => {
           });
         }
         setErrorHandler({ error: true, message: error.response.data });
+        setFetching(false);
       });
   };
 };

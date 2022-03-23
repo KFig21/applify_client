@@ -13,6 +13,8 @@ import "./Modal.scss";
 import { StarOutlineRounded, Star } from "@material-ui/icons";
 import { favJob } from "../../helpers/Api";
 import { closeAnimation } from "./HelperFunctions";
+import axios from "axios";
+import { url } from "../../helpers/Api";
 
 export default function EditJobModal({ setEditJobModal, job, board }) {
   const [isValid, setIsValid] = useState(false);
@@ -62,39 +64,55 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
   };
 
   const handleEditJob = () => {
-    dispatch(
-      editJob(
-        {
-          user: state._id,
-          job: job._id,
-          board: board._id,
-          company: company,
-          position: position,
-          applied: applied,
-          appDate: appDate,
-          city: city,
-          locationState: locationState,
-          remote: remote,
-          status: status,
-          result: result,
-          jobtype: jobtype,
-          jobsite: jobsite,
-          username: username,
-          password: password,
-          link: link,
-          payType: payType,
-          payScale: payScale,
-          payMin: payMin,
-          payMax: payMax,
-          pay: pay,
-          notes: notes,
-          favorite: favorite,
-        },
-        setErrorHandler
-      )
-    );
-    setEditJobModal(false);
-    window.location.reload();
+    try {
+      const editJobData = async () => {
+        try {
+          await axios
+            .put(`${url}/jobs/edit`, {
+              user: state._id,
+              job: job._id,
+              board: board._id,
+              company: company,
+              position: position,
+              applied: applied,
+              appDate: appDate,
+              city: city,
+              locationState: locationState,
+              remote: remote,
+              status: status,
+              result: result,
+              jobtype: jobtype,
+              jobsite: jobsite,
+              username: username,
+              password: password,
+              link: link,
+              payType: payType,
+              payScale: payScale,
+              payMin: payMin,
+              payMax: payMax,
+              pay: pay,
+              notes: notes,
+              favorite: favorite,
+            })
+            .then(() => {
+              setErrorHandler({ error: false, message: "" });
+              setEditJobModal(false);
+              window.location.reload();
+            })
+            .catch((error) => {
+              setErrorHandler({
+                error: true,
+                message: error.response.data.message,
+              });
+            });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      editJobData();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDeleteJob = () => {
@@ -317,6 +335,9 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
               ></SC.jobNotesTextarea>
             </div>
             {/* BUTTONS */}
+            <div className="error-message-container">
+              {errorHandler.error && errorHandler.message}
+            </div>
             <SC.jobButtonContainer className="modal-buttons-container job">
               {!showDeleteButton ? (
                 <>

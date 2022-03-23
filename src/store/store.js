@@ -6,7 +6,7 @@ import throttle from "lodash/throttle";
 
 // persisted state link - https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
 // persisted state repo - https://github.com/gaearon/todos/blob/03-persisting-state-to-local-storage/src/index.js
-// const persistedState = loadState();
+const persistedState = loadState();
 
 const middleWare = [thunk];
 
@@ -14,7 +14,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  // persistedState,
+  persistedState,
   composeEnhancer(applyMiddleware(...middleWare))
 );
 

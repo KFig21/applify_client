@@ -33,7 +33,8 @@ export default function Login() {
               usermail: usermail,
               password: password,
             },
-            setErrorHandler
+            setErrorHandler,
+            setFetching
           )
         );
       };
@@ -41,7 +42,6 @@ export default function Login() {
       const followUp = async () => {
         setUsermail("");
         setPassword("");
-        setFetchingGuest(false);
       };
 
       fetchUser().then(() => followUp());
@@ -58,7 +58,8 @@ export default function Login() {
               usermail: "GuestUser",
               password: process.env.REACT_APP_TEST_ACCOUNT_PASSWORD,
             },
-            setErrorHandler
+            setErrorHandler,
+            setFetchingGuest
           )
         );
       };
@@ -66,7 +67,6 @@ export default function Login() {
       const followUp = async () => {
         setUsermail("");
         setPassword("");
-        setFetchingGuest(false);
       };
 
       fetchUser().then(() => followUp());

@@ -28,3 +28,5 @@ export const JOB_EDIT = "JOB_EDIT";
 export const JOB_EDIT_FAIL = "JOB_EDIT_FAIL";
 export const JOB_DELETE = "JOB_DELETE";
 export const JOB_DELETE_FAIL = "JOB_DELETE_FAIL";
+export const GET_JOBS = "GET_JOBS";
+export const GET_JOBS_FAIL = "GET_JOBS_FAIL";
