@@ -13,11 +13,12 @@
   <li><strong>E</strong>xpressJS</li>
   <li><strong>R</strong>eactJS</li>
   <li><strong>N</strong>odeJS</li>
-  <li>SASS</li>
+  <li>Redux</li>
   <li>Styled Components</li>
   <li>JWT Authentication</li>
   <li>React Sticky-Table</li>
-  <li>Heroku hosting</li> 
+  <li>Heroku hosting</li>   
+  <li>SASS</li>
  </ul>
 
  <h3>Features:</h3>
