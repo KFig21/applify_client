@@ -18,8 +18,6 @@ const store = createStore(
   composeEnhancer(applyMiddleware(...middleWare))
 );
 
-console.log("STORE: ", store.getState());
-
 store.subscribe(
   throttle(() => {
     saveState({
