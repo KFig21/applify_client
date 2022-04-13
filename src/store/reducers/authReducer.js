@@ -22,10 +22,12 @@ const initialState = {
   limit: null,
   boards: [],
   quicklinks: [],
-  token: localStorage.getItem("token"),
+  token_applify: localStorage.getItem("token_applify"),
 };
 
 const authReducer = (state = initialState, action) => {
+  console.log(action.type);
+  console.log(state);
   switch (action.type) {
     case CURRENT_USER:
     case LOGIN:
@@ -36,9 +38,9 @@ const authReducer = (state = initialState, action) => {
     case THEME_UPDATE_FAIL:
     case QUICKLINK_UPDATE:
     case QUICKLINK_UPDATE_FAIL:
-      const user = jwtDecode(action.token);
+      const user = jwtDecode(action.token_applify);
       return {
-        token: action.token,
+        token_applify: action.token_applify,
         username: user.username,
         email: user.email,
         firstname: user.firstname,
@@ -59,10 +61,10 @@ const authReducer = (state = initialState, action) => {
         limit: null,
         boards: [],
         quicklinks: [],
-        token: null,
+        token_applify: null,
       };
     case LOGOUT:
-      localStorage.removeItem("token");
+      localStorage.removeItem("token_applify");
       return {
         username: null,
         email: null,
@@ -72,7 +74,7 @@ const authReducer = (state = initialState, action) => {
         limit: null,
         boards: [],
         quicklinks: [],
-        token: null,
+        token_applify: null,
       };
     default:
       return state;

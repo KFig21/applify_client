@@ -18,10 +18,12 @@ const store = createStore(
   composeEnhancer(applyMiddleware(...middleWare))
 );
 
+console.log("STORE: ", store.getState());
+
 store.subscribe(
   throttle(() => {
     saveState({
-      token: store.getState().token,
+      token_applify: store.getState().token_applify,
     });
   }, 1000)
 );

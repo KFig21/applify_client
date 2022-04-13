@@ -18,11 +18,11 @@ export const register = (user) => {
   return (dispatch) => {
     axios
       .post(`${url}/auth/register`, user)
-      .then((token) => {
-        localStorage.setItem("token", token.data);
+      .then((token_applify) => {
+        localStorage.setItem("token_applify", token_applify.data);
         dispatch({
           type: REGISTER,
-          token: token.data,
+          token_applify: token_applify.data,
         });
       })
       .catch((error) => {
@@ -35,11 +35,11 @@ export const login = (cred, setErrorHandler, setFetching) => {
   return (dispatch) => {
     axios
       .post(`${url}/auth/login`, cred)
-      .then((token) => {
-        localStorage.setItem("token", token.data);
+      .then((token_applify) => {
+        localStorage.setItem("token_applify", token_applify.data);
         dispatch({
           type: LOGIN,
-          token: token.data,
+          token_applify: token_applify.data,
         });
         setFetching(false);
       })
@@ -66,13 +66,13 @@ export const logout = () => {
 
 export const loadUser = () => {
   return (dispatch, getState) => {
-    const token = getState().user.token;
-    // const user = jwtDecode(token);
+    const token_applify = getState().user.token_applify;
+    // const user = jwtDecode(token_applify);
     // console.log(user);
-    if (token) {
+    if (token_applify) {
       dispatch({
         type: CURRENT_USER,
-        token,
+        token_applify: token_applify,
       });
     } else {
       return null;
@@ -84,11 +84,11 @@ export const updatePageLimit = (data) => {
   return (dispatch) => {
     axios
       .put(`${url}/auth/limit`, data)
-      .then((token) => {
-        localStorage.setItem("token", token.data);
+      .then((token_applify) => {
+        localStorage.setItem("token_applify", token_applify.data);
         dispatch({
           type: LIMIT_UPDATE,
-          token: token.data,
+          token_applify: token_applify.data,
         });
       })
       .catch((error) => {
@@ -106,11 +106,11 @@ export const updateTheme = (data) => {
   return (dispatch) => {
     axios
       .put(`${url}/auth/theme`, data)
-      .then((token) => {
-        localStorage.setItem("token", token.data);
+      .then((token_applify) => {
+        localStorage.setItem("token_applify", token_applify.data);
         dispatch({
           type: THEME_UPDATE,
-          token: token.data,
+          token_applify: token_applify.data,
         });
       })
       .catch((error) => {
@@ -128,11 +128,11 @@ export const updateQuicklinks = (data) => {
   return (dispatch) => {
     axios
       .put(`${url}/auth/quicklink`, data)
-      .then((token) => {
-        localStorage.setItem("token", token.data);
+      .then((token_applify) => {
+        localStorage.setItem("token_applify", token_applify.data);
         dispatch({
           type: QUICKLINK_UPDATE,
-          token: token.data,
+          token_applify: token_applify.data,
         });
       })
       .catch((error) => {
