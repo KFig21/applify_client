@@ -130,7 +130,7 @@ const SC = {
       props.theme.colors.backgroundColor} !important;
     border: solid 2px;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
@@ -752,7 +752,7 @@ const SC = {
     overflow: overlay;
     width: 100%;
     max-height: 67vh;
-    border-radius: 20px;
+    border-radius: 7px;
     box-shadow: ${(props) => props.theme.colors.containerShadow} !important;
     border-bottom: solid ${(props) => props.theme.colors.tableBorderPx}
       ${(props) => props.theme.colors.tableBorderColor};
@@ -1555,7 +1555,7 @@ const SC = {
   boardStats: styled.div`
     border: 2px solid ${(props) => props.theme.colors.subtextOnBgColor};
     background-color: ${(props) => props.theme.colors.tableAlternateRowColor};
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 8px 6px;
     margin: 0px 15px;
     display: flex;
@@ -1574,7 +1574,7 @@ const SC = {
     color: ${(props) => props.theme.colors.textOnBgColor} !important;
     background-color: ${(props) =>
       props.theme.colors.boardLinkBgColor} !important;
-    border-radius: 10px;
+    border-radius: 7px;
     box-shadow: ${(props) => props.theme.colors.containerShadow} !important;
     min-width: 450px;
     font-size: 16px;
@@ -1620,7 +1620,7 @@ const SC = {
   // ---------- HOME ----------
   homeContentContainer: styled.div`
     padding: 0px 40px;
-    border-radius: 40px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1650,7 +1650,6 @@ const SC = {
     }
 
     &.boards-container {
-      border-radius: 20px !important;
       ::-webkit-scrollbar-track {
         margin-top: 5px;
         margin-bottom: 5px;
@@ -1673,7 +1672,7 @@ const SC = {
     color: ${(props) => props.theme.colors.textOnBgColor} !important;
     background-color: ${(props) =>
       props.theme.colors.quickLinkBgColor} !important;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px 20px 6px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -1732,7 +1731,7 @@ const SC = {
     margin-bottom: 0px !important;
   `,
   jobSiteContainer: styled.div`
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 0px 10px;
     overflow: hidden;
     background-color: ${(props) => props.theme.colors.jobsiteBgColor};
@@ -1765,7 +1764,7 @@ const SC = {
     font-size: 16px;
     padding: 5px 10px;
     margin: 6px 10px;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1888,7 +1887,7 @@ const SC = {
     padding: 3px;
     min-width: 100%;
     margin-right: 0px;
-    overflow-x: hidden;
+    // overflow-x: hidden;
   `,
   StatPercentageContainer: styled.div`
     display: flex;

@@ -612,7 +612,7 @@ export default function Board() {
 
   const fetchBoard = async (_filter = filter, _filterCol = filterCol) => {
     setBoard(await getBoard(boardParams.id, _filter, _filterCol));
-    fetchJobs(0);
+    fetchJobs(0, sort, order, _filter, _filterCol);
   };
 
   const resetBoard = async () => {
@@ -667,6 +667,14 @@ export default function Board() {
         <BoardStatsModal
           setBoardStatsModal={setBoardStatsModal}
           board={board}
+          filter={filter}
+          filterCol={filterCol}
+          setFilter={setFilter}
+          setFilterCol={setFilterCol}
+          fetchBoard={fetchBoard}
+          setLoaded={setLoaded}
+          setIsFiltered={setIsFiltered}
+          resetBoard={resetBoard}
         />
       )}
       {/* FILTER BOARD MODAL */}
@@ -702,18 +710,21 @@ export default function Board() {
               : 0}
           </SC.textOnBgColor>
           <SC.textOnBgColor className="job-stats">
-            Waiting - {board.waiting}
+            Waiting -{" "}
+            {board && board.jobs && board.jobs.length !== undefined
+              ? board.waiting
+              : 0}
           </SC.textOnBgColor>
         </SC.boardStats>
         <div className="table-header-buttons">
           {/* ADD JOBS */}
-          {jobs.length < 1000 && (
+          {jobs.length < 1000 && loaded && (
             <SC.primaryColorButtonInverse onClick={() => handleCreateNewJob()}>
               + Add a job
             </SC.primaryColorButtonInverse>
           )}
           {/* FILTER JOBS */}
-          {jobs.length > 1 && (
+          {(jobs.length > 0 || isFiltered) && (
             <SC.primaryColorButtonInverse
               className={`filter-icon-container ${isFiltered && " filtered"}`}
               onClick={() => handleFilterModal()}

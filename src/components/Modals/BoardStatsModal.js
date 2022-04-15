@@ -5,10 +5,19 @@ import SC from "../../themes/StyledComponents";
 import Loader from "../Loader/Loader";
 import { closeAnimation } from "./HelperFunctions";
 import "./Modal.scss";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
-export default function BoardStatsModal({ setBoardStatsModal, board }) {
+export default function BoardStatsModal({
+  setBoardStatsModal,
+  board,
+  setFilter,
+  setFilterCol,
+  fetchBoard,
+  setLoaded,
+  setIsFiltered,
+}) {
   const [jobs, setJobs] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const [loadedStats, setLoadedStats] = useState(false);
   const statusObj = {
     waiting: 0,
     applied: 0,
@@ -26,6 +35,15 @@ export default function BoardStatsModal({ setBoardStatsModal, board }) {
   };
   const [statusStats, setStatusStats] = useState([]);
   const [resultsStats, setResultsStats] = useState([]);
+
+  const handleFilter = (_filter, _filterCol) => {
+    setLoaded(false);
+    setBoardStatsModal(false);
+    setFilter(_filter);
+    setFilterCol(_filterCol);
+    setIsFiltered(true);
+    fetchBoard(_filter, _filterCol);
+  };
 
   const fetchJobs = async () => {
     let _board = await board._id;
@@ -90,7 +108,7 @@ export default function BoardStatsModal({ setBoardStatsModal, board }) {
     });
     setStatusStats(statusStatsTemp);
     setResultsStats(resultsStatsTemp);
-    setLoaded(true);
+    setLoadedStats(true);
   };
 
   useEffect(() => {
@@ -119,7 +137,7 @@ export default function BoardStatsModal({ setBoardStatsModal, board }) {
         {/* STATS CONTAINER */}
 
         <div className="modal-stats-container">
-          {loaded ? (
+          {loadedStats ? (
             <>
               <SC.SingleStatContainer className="single-stat-container total">
                 <span className="stat-name">Applications: </span>
@@ -134,7 +152,13 @@ export default function BoardStatsModal({ setBoardStatsModal, board }) {
                   {statusStats.map((status) => {
                     return (
                       <SC.SingleStatContainer className="single-stat-container">
-                        <span className="stat-name">{status.name}</span>
+                        <span
+                          className="stat-name"
+                          onClick={() => handleFilter(status.name, "status")}
+                        >
+                          <FilterAltIcon className="stat-filter-icon" />
+                          {status.name}
+                        </span>
                         <span className="stat-count">{status.count}</span>
                         <SC.StatPercentageContainer
                           className={`${status.name}`}
@@ -169,8 +193,14 @@ export default function BoardStatsModal({ setBoardStatsModal, board }) {
                 <div className="stats-container">
                   {resultsStats.map((result) => {
                     return (
-                      <SC.SingleStatContainer className="single-stat-container">
-                        <span className="stat-name">{result.name}</span>
+                      <SC.SingleStatContainer
+                        className="single-stat-container"
+                        onClick={() => handleFilter(result.name, "result")}
+                      >
+                        <span className="stat-name">
+                          <FilterAltIcon className="stat-filter-icon" />
+                          {result.name}
+                        </span>
                         <span className="stat-count">{result.count}</span>
                         <SC.StatPercentageContainer
                           className={`${result.name}`}

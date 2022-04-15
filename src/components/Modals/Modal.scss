@@ -93,7 +93,7 @@
     justify-content: flex-start;
     padding: 0px 40px 20px 30px;
     z-index: 10;
-    border-radius: 20px;
+    border-radius: 10px;
     max-height: 80vh;
     overflow-y: overlay;
     overflow-x: hidden;
@@ -142,7 +142,7 @@
       justify-content: center;
       margin: auto;
       padding: 20px 35px;
-      border-radius: 20px 20px 0px 0px;
+      border-radius: 10px 10px 0px 0px;
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
@@ -574,6 +574,27 @@
       .single-stat-container {
         .stat-count {
           text-align: center;
+        }
+        .stat-name {
+          position: relative;
+          cursor: pointer;
+
+          .stat-filter-icon {
+            position: absolute;
+            opacity: 0;
+            transition: all ease 0.15s;
+            max-width: 18px;
+            max-height: 18px;
+            left: -20px;
+            top: 60%;
+            transform: translateY(-50%);
+          }
+
+          &:hover {
+            .stat-filter-icon {
+              opacity: 1;
+            }
+          }
         }
 
         &.total {
