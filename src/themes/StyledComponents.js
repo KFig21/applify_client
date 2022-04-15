@@ -1881,6 +1881,90 @@ const SC = {
     box-shadow: ${(props) => props.theme.colors.containerShadow} !important;
   `,
 
+  // ---------- STATS ----------
+  SingleStatContainer: styled.div`
+    display: grid;
+    grid-template-columns: 90px 70px calc(100% - 175px);
+    padding: 3px;
+    min-width: 100%;
+    margin-right: 0px;
+    overflow-x: hidden;
+  `,
+  StatPercentageContainer: styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    &.waiting {
+      background-color: ${(props) => props.theme.colors.waiting_Bg} !important;
+    }
+    &.applied {
+      background-color: ${(props) => props.theme.colors.waiting_Bg} !important;
+    }
+    &.viewed {
+      background-color: ${(props) => props.theme.colors.viewed_Bg} !important;
+    }
+    &.interviewed {
+      background-color: ${(props) =>
+        props.theme.colors.interviewed_Bg} !important;
+    }
+    &.offered {
+      background-color: ${(props) => props.theme.colors.offered_Bg} !important;
+    }
+    &.accepted {
+      background-color: ${(props) => props.theme.colors.accepted_Bg} !important;
+    }
+    &.passed {
+      background-color: ${(props) => props.theme.colors.passed_Bg} !important;
+    }
+    &.not.selected {
+      background-color: ${(props) => props.theme.colors.rejected_Bg} !important;
+    }
+  `,
+  StatBar: styled.div`
+    position: relative;
+
+    .stat-percentage {
+      white-space: nowrap;
+      margin: 0px 5px;
+      text-align: end;
+      text-shadow: ${(props) => props.theme.colors.textShadow};
+    }
+
+    &.waiting {
+      background-color: ${(props) =>
+        props.theme.colors.waiting_Border_true} !important;
+    }
+    &.applied {
+      background-color: ${(props) =>
+        props.theme.colors.waiting_Border_true} !important;
+    }
+    &.viewed {
+      background-color: ${(props) =>
+        props.theme.colors.viewed_Border_true} !important;
+    }
+    &.interviewed {
+      background-color: ${(props) =>
+        props.theme.colors.interviewed_Border_true} !important;
+    }
+    &.offered {
+      background-color: ${(props) =>
+        props.theme.colors.offered_Border_true} !important;
+    }
+    &.accepted {
+      background-color: ${(props) =>
+        props.theme.colors.accepted_Border_true} !important;
+    }
+    &.passed {
+      background-color: ${(props) =>
+        props.theme.colors.passed_Border_true} !important;
+    }
+    &.not.selected {
+      background-color: ${(props) =>
+        props.theme.colors.rejected_Border_true} !important;
+    }
+  `,
+
   // ---------- MISC ----------
   Loader: styled.div`
     color: ${(props) => props.theme.colors.primaryColor} !important;

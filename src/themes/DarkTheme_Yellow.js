@@ -39,6 +39,7 @@ const darkThemeYellow = {
     // text
     booleanTrueGreen: "rgb(29, 147, 76)",
     booleanFalseRed: "crimson",
+    textShadow: "0px 0px 5px black",
     // home
     jobsiteBgColor: "#3a3c41",
     jobsiteTextColor: "rgba(10, 10, 10, 1)",

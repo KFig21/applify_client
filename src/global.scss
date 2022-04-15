@@ -61,6 +61,17 @@ $width: 800px;
     // height: calc(100vh - $navbarHeight - $footerHeight);
   }
 }
+.loader-stats {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @include mobile {
+    // height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+}
 .loader-home {
   height: 630px;
   display: flex;

@@ -9,6 +9,10 @@ import Loader from "../Loader/Loader";
 import NewJobModal from "../Modals/NewJobModal";
 import BoardNameModal from "../Modals/BoardNameModal";
 import EditJobModal from "../Modals/EditJobModal";
+import Favorite_col from "./columns/Favorite_col";
+import FilterJobsModal from "../Modals/FilterJobsModal";
+import ViewJobModal from "../Modals/ViewJobModal";
+import BoardStatsModal from "../Modals/BoardStatsModal";
 import {
   Create,
   StarOutlineRounded,
@@ -20,13 +24,11 @@ import {
   FastRewind,
 } from "@material-ui/icons";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
 
 // sticky table repo https://github.com/GuillaumeJasmin/react-table-sticky
 import { useTable, useBlockLayout } from "react-table";
 import { useSticky } from "react-table-sticky";
-import Favorite_col from "./columns/Favorite_col";
-import FilterJobsModal from "../Modals/FilterJobsModal";
-import ViewJobModal from "../Modals/ViewJobModal";
 
 export default function Board() {
   const user = useSelector((state) => state.user);
@@ -40,6 +42,7 @@ export default function Board() {
   const [jobToEdit, setJobToEdit] = useState({});
   const [jobToView, setJobToView] = useState({});
   const [boardNameModal, setBoardNameModal] = useState(false);
+  const [boardStatsModal, setBoardStatsModal] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [pageloaded, setPageloaded] = useState(false);
   const [sort, setSort] = useState("appDate");
@@ -659,6 +662,13 @@ export default function Board() {
       {boardNameModal && (
         <BoardNameModal setBoardNameModal={setBoardNameModal} board={board} />
       )}
+      {/* BOARD STATS MODAL */}
+      {boardStatsModal && (
+        <BoardStatsModal
+          setBoardStatsModal={setBoardStatsModal}
+          board={board}
+        />
+      )}
       {/* FILTER BOARD MODAL */}
       {filterModal && (
         <FilterJobsModal
@@ -715,6 +725,15 @@ export default function Board() {
               {filterCol !== "none" && filter !== "none" && (
                 <strong className="filter-text">{`${filterCol}: ${filter}`}</strong>
               )}
+            </SC.primaryColorButtonInverse>
+          )}
+          {/* BOARD STATS */}
+          {jobs.length > 0 && (
+            <SC.primaryColorButtonInverse
+              className={`filter-icon-container `}
+              onClick={() => setBoardStatsModal(true)}
+            >
+              <QueryStatsIcon className="filter-icon" />
             </SC.primaryColorButtonInverse>
           )}
         </div>

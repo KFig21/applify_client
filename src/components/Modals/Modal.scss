@@ -536,6 +536,51 @@
         }
       }
     }
+
+    .modal-stats-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 90px;
+      width: 100%;
+
+      @include mobile {
+        margin-top: 80px;
+      }
+      @include mobileKeyboard {
+        margin-top: 80px;
+      }
+
+      .stat-wrapper {
+        padding: 10px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-width: 100%;
+
+        .modal-stats-title {
+          font-size: 22px;
+        }
+
+        .stats-container {
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          min-width: 100%;
+        }
+      }
+      .single-stat-container {
+        .stat-count {
+          text-align: center;
+        }
+
+        &.total {
+          margin-left: 10px;
+        }
+      }
+    }
   }
 
   .modal-background {
