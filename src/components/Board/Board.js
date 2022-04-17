@@ -25,6 +25,7 @@ import {
 } from "@material-ui/icons";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import LinkIcon from "@mui/icons-material/Link";
 
 // sticky table repo https://github.com/GuillaumeJasmin/react-table-sticky
 import { useTable, useBlockLayout } from "react-table";
@@ -91,6 +92,11 @@ export default function Board() {
         accessor: "view",
         sticky: "left",
       },
+      {
+        Header: "",
+        accessor: "link",
+        sticky: "left",
+      },
       // scroll columns
       {
         Header: "Applied",
@@ -127,10 +133,6 @@ export default function Board() {
       {
         Header: "Site",
         accessor: "jobSite",
-      },
-      {
-        Header: "Link",
-        accessor: "link",
       },
       {
         Header: "Pay",
@@ -280,6 +282,24 @@ export default function Board() {
                         </SC.ST_cell_sticky>
                       );
                     };
+                    // LISTING LINK
+                    const _link = () => {
+                      return (
+                        <SC.ST_cell_sticky
+                          {...cell.getCellProps()}
+                          className={`${stickyBG} ${col} center`}
+                        >
+                          <SC.subtextOnBgColor_link
+                            className="icon-container"
+                            href={val}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <LinkIcon className="favorite-icon" />
+                          </SC.subtextOnBgColor_link>
+                        </SC.ST_cell_sticky>
+                      );
+                    };
                     // APPLIED
                     const _applied = () => {
                       return (
@@ -315,9 +335,13 @@ export default function Board() {
                       return (
                         <SC.ST_cell_standard
                           {...cell.getCellProps()}
-                          className={` ${col} `}
+                          className={` ${col}`}
                         >
-                          <SC.textOnBgColor>{job.city}</SC.textOnBgColor>
+                          <SC.textOnBgColor
+                            className={`city-${job.city.toLowerCase()}`}
+                          >
+                            {job.city}
+                          </SC.textOnBgColor>
                         </SC.ST_cell_standard>
                       );
                     };
@@ -328,7 +352,9 @@ export default function Board() {
                           {...cell.getCellProps()}
                           className={` ${col} center`}
                         >
-                          <SC.textOnBgColor>
+                          <SC.textOnBgColor
+                            className={`city-${job.city.toLowerCase()}`}
+                          >
                             {job.locationState}
                           </SC.textOnBgColor>
                         </SC.ST_cell_standard>
@@ -428,24 +454,6 @@ export default function Board() {
                           className={` ${col} center`}
                         >
                           <SC.textOnBgColor>{job.jobsite}</SC.textOnBgColor>
-                        </SC.ST_cell_standard>
-                      );
-                    };
-                    // LISTING LINK
-                    const _link = () => {
-                      return (
-                        <SC.ST_cell_standard
-                          {...cell.getCellProps()}
-                          className={`${col} center`}
-                        >
-                          <SC.listingLink
-                            className="listing-link"
-                            href={val}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Listing
-                          </SC.listingLink>
                         </SC.ST_cell_standard>
                       );
                     };

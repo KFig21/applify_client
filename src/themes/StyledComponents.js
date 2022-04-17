@@ -5,16 +5,16 @@ const colWidth_company = 150;
 const colWidth_position = 200;
 const colWidth_edit = 40;
 const colWidth_view = 40;
+const colWidth_link = 40;
 const colWidth_applied = 80;
 const colWidth_appDate = 130;
 const colWidth_city = 150;
 const colWidth_locationState = 70;
 const colWidth_remote = 70;
-const colWidth_status = 150;
-const colWidth_result = 150;
+const colWidth_status = 120;
+const colWidth_result = 120;
 const colWidth_jobType = 150;
 const colWidth_jobSite = 150;
-const colWidth_link = 150;
 const colWidth_pay = 150;
 const maxW =
   colWidth_favorite +
@@ -40,6 +40,7 @@ const colWidth_company_MOBILE = 100;
 const colWidth_position_MOBILE = 100;
 const colWidth_edit_MOBILE = 40;
 const colWidth_view_MOBILE = 40;
+const colWidth_link_MOBILE = 40;
 const colWidth_applied_MOBILE = 0;
 const colWidth_appDate_MOBILE = 0;
 const colWidth_city_MOBILE = 0;
@@ -49,7 +50,6 @@ const colWidth_status_MOBILE = 0;
 const colWidth_result_MOBILE = 0;
 const colWidth_jobType_MOBILE = 0;
 const colWidth_jobSite_MOBILE = 0;
-const colWidth_link_MOBILE = 0;
 const colWidth_pay_MOBILE = 0;
 const maxW_MOBILE =
   colWidth_favorite_MOBILE +
@@ -101,9 +101,26 @@ const SC = {
   textOnBgColor: styled.span`
     color: ${(props) => props.theme.colors.textOnBgColor} !important;
 
+    
+
+    &.city-remote {
+      color: ${(props) => props.theme.colors.subtextOnBgColor} !important;
+    }
   };
   `,
   subtextOnBgColor: styled.span`
+    color: ${(props) => props.theme.colors.subtextOnBgColor} !important;
+    &.icon-container {
+      display: flex !important;
+      cursor: pointer;
+      opacity: .5;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  };
+  `,
+  subtextOnBgColor_link: styled.a`
     color: ${(props) => props.theme.colors.subtextOnBgColor} !important;
     &.icon-container {
       display: flex !important;
@@ -935,6 +952,31 @@ const SC = {
         }
       }
     }
+    &.link {
+      min-width: ${colWidth_link}px !important;
+      max-width: ${colWidth_link}px !important;
+      left: calc(
+        ${colWidth_favorite}px + ${colWidth_company}px + ${colWidth_position}px +
+          ${colWidth_edit}px + ${colWidth_view}px
+      ) !important;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      clip-path: inset(0px -10px 0px 0px);
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_link_MOBILE}px !important;
+          max-width: ${colWidth_link_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
+              ${colWidth_position_MOBILE}px + ${colWidth_edit_MOBILE}px +
+              ${colWidth_view_MOBILE}px
+          ) !important;
+
+          box-shadow: none;
+          clip-path: none;
+        }
+      }
+    }
     &.applied {
       min-width: ${colWidth_applied}px;
       max-width: ${colWidth_applied}px;
@@ -1051,19 +1093,6 @@ const SC = {
         }
       }
     }
-    &.link {
-      min-width: ${colWidth_link}px;
-      max-width: ${colWidth_link}px;
-      text-align: center;
-
-      @media (min-height: 421px) {
-        @media (max-width: 800px) {
-          min-width: ${colWidth_link_MOBILE}px !important;
-          max-width: ${colWidth_link_MOBILE}px !important;
-          display: none !important;
-        }
-      }
-    }
     &.pay {
       min-width: ${colWidth_pay}px;
       max-width: ${colWidth_pay}px;
@@ -1171,6 +1200,31 @@ const SC = {
           left: calc(
             ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
               ${colWidth_position_MOBILE}px + ${colWidth_edit_MOBILE}px
+          ) !important;
+
+          box-shadow: none;
+          clip-path: none;
+        }
+      }
+    }
+    &.link {
+      min-width: ${colWidth_link}px !important;
+      max-width: ${colWidth_link}px !important;
+      left: calc(
+        ${colWidth_favorite}px + ${colWidth_company}px + ${colWidth_position}px +
+          ${colWidth_edit}px + ${colWidth_view}px
+      ) !important;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      clip-path: inset(0px -10px 0px 0px);
+
+      @media (min-height: 421px) {
+        @media (max-width: 800px) {
+          min-width: ${colWidth_link_MOBILE}px !important;
+          max-width: ${colWidth_link_MOBILE}px !important;
+          left: calc(
+            ${colWidth_favorite_MOBILE}px + ${colWidth_company_MOBILE}px +
+              ${colWidth_position_MOBILE}px + ${colWidth_edit_MOBILE}px +
+              ${colWidth_view_MOBILE}px
           ) !important;
 
           box-shadow: none;
@@ -1325,18 +1379,6 @@ const SC = {
         @media (max-width: 800px) {
           min-width: ${colWidth_jobSite_MOBILE}px !important;
           max-width: ${colWidth_jobSite_MOBILE}px !important;
-          display: none !important;
-        }
-      }
-    }
-    &.link {
-      min-width: ${colWidth_link}px;
-      max-width: ${colWidth_link}px;
-
-      @media (min-height: 421px) {
-        @media (max-width: 800px) {
-          min-width: ${colWidth_link_MOBILE}px !important;
-          max-width: ${colWidth_link_MOBILE}px !important;
           display: none !important;
         }
       }
@@ -1887,7 +1929,6 @@ const SC = {
     padding: 3px;
     min-width: 100%;
     margin-right: 0px;
-    // overflow-x: hidden;
   `,
   StatPercentageContainer: styled.div`
     display: flex;
