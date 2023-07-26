@@ -4,7 +4,7 @@ import SC from "../../themes/StyledComponents";
 export default function Logo() {
   return (
     <a
-      href="https://kfig21.github.io/portfolio_2021/"
+      href="https://kfig21.github.io/portfolio_2022/"
       target="_blank"
       rel="noopener noreferrer"
     >
