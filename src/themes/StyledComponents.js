@@ -223,6 +223,10 @@ const SC = {
       color: ${(props) => props.theme.colors.booleanFalseRed} !important;
       text-decoration: none;
     }
+    &.hybrid {
+      color: ${(props) => props.theme.colors.booleanHybridColor} !important;
+      text-decoration: none;
+    }
     &.na {
       color: ${(props) => props.theme.colors.subtextOnBgColor} !important;
       text-decoration: none;
@@ -324,6 +328,10 @@ const SC = {
       background-color: ${(props) =>
         props.theme.colors.rowHoverColorPrimary} !important;
     }
+
+    &.NavQuickLink {
+      min-width: 176px;
+    }
   `,
   navLogoText: styled.span`
     color: ${(props) => props.theme.colors.primaryColor} !important;
@@ -341,6 +349,12 @@ const SC = {
     -moz-text-fill-color: transparent;
     font-weight: 700;
     font-family: "poppins", sans-serif;
+  `,
+  navQuickLink:styled.span`
+    margin-left: 8px;
+    &.active {
+      color: ${(props) => props.theme.colors.primaryColor} !important;
+    }
   `,
 
   // ---------- AUTH ----------
@@ -1827,6 +1841,9 @@ const SC = {
     a {
       text-decoration: none;
       color: inherit !important;
+    }
+    &.NavQuickLink {
+      min-width: 24px
     }
   `,
   quickLinkTextarea: styled.textarea`

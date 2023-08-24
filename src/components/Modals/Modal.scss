@@ -238,7 +238,9 @@
         }
         &.date {
           max-width: 200px;
-          min-width: unset;
+          min-width: unset; 
+          padding-right: 8px;
+          margin-right: 12px;
         }
       }
       // REMOVE ARROWS ON NUMBER INPUT

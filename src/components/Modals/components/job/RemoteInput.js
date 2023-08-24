@@ -40,6 +40,22 @@ export default function RemoteInput({ remote, setRemote }) {
               onChange={() => setRemote("no")}
             />
           </div>
+          {/* HYBRID */}
+          <div className="job-radio-wrapper">
+            <SC.jobFormRadioLabel
+              htmlFor="remote-hybrid"
+              className={`job-radio-label ${remote === "hybrid"}`}
+            >
+              hybrid
+            </SC.jobFormRadioLabel>
+            <input
+              type="radio"
+              name="remote"
+              id="remote-hybrid"
+              className="job-radio-input"
+              onChange={() => setRemote("hybrid")}
+            />
+          </div>
           {/* N/A */}
           <div className="job-radio-wrapper">
             <SC.jobFormRadioLabel

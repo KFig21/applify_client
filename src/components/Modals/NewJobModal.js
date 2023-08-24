@@ -25,7 +25,6 @@ export default function NewJobModal({ setNewJobModal, board }) {
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
   const [applied, setApplied] = useState(true);
-  const [appDate, setAppDate] = useState("-");
   const [city, setCity] = useState("");
   const [locationState, setLocationState] = useState("");
   const [remote, setRemote] = useState("yes");
@@ -43,6 +42,13 @@ export default function NewJobModal({ setNewJobModal, board }) {
   const [pay, setPay] = useState(0);
   const [notes, setNotes] = useState("");
   const [favorite, setFavorite] = useState(false);
+  // application date
+  const timestamp = new Date(Date.now());
+  const year = timestamp.getUTCFullYear();
+  const month = String(timestamp.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(timestamp.getUTCDate()).padStart(2, '0');
+  let date = `${year}-${month}-${day}`;
+  const [appDate, setAppDate] = useState(date);
 
   const handleAddNewJob = () => {
     try {
@@ -119,6 +125,20 @@ export default function NewJobModal({ setNewJobModal, board }) {
     closeAnimation(setNewJobModal);
   };
 
+  const setAsToday = () => {
+    const timestamp = new Date(Date.now());
+    const year = timestamp.getUTCFullYear();
+    const month = String(timestamp.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(timestamp.getUTCDate()).padStart(2, '0');
+    let date = `${year}-${month}-${day}`;
+    setAppDate(date)
+  }
+
+  const handleNoLocation = () => {
+    setCity("Remote")
+    setLocationState("NA")
+  }
+
   return (
     <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       <SC.jobFormContainer
@@ -167,8 +187,15 @@ export default function NewJobModal({ setNewJobModal, board }) {
               className="modal-input job date"
               name=""
               id=""
+              value={appDate}
               onChange={(e) => setAppDate(e.target.value)}
             ></SC.authInput>
+            <SC.primaryColorButtonInverse
+              className={`modal-button ${isValid}`}
+              onClick={() => setAsToday()}
+            >
+              today
+            </SC.primaryColorButtonInverse>
           </div>
           {/* CITY */}
           <div className="job-input-container">
@@ -179,6 +206,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
               maxLength="50"
               placeholder="City"
               onChange={(e) => setCity(e.target.value)}
+              value={city}
               required
             ></SC.authInput>
           </div>
@@ -191,8 +219,18 @@ export default function NewJobModal({ setNewJobModal, board }) {
               maxLength="2"
               placeholder="State (NY, PA)"
               onChange={(e) => setLocationState(e.target.value)}
+              value={locationState}
               required
             ></SC.authInput>
+          </div>
+          <div className="job-input-container">
+            <span className="input-label"></span>
+            <SC.primaryColorButtonInverse
+                className={`modal-button ${isValid}`}
+                onClick={() => handleNoLocation()}
+              >
+                remote/no location
+            </SC.primaryColorButtonInverse>
           </div>
           {/* REMOTE */}
           <RemoteInput remote={remote} setRemote={setRemote} />
@@ -211,8 +249,32 @@ export default function NewJobModal({ setNewJobModal, board }) {
               maxLength="50"
               placeholder="indeed, monster..."
               onChange={(e) => setJobsite(e.target.value)}
+              value={jobsite}
               required
             ></SC.authInput>
+          </div>
+          <div className="job-input-container">
+            <span className="input-label"></span>
+            <div style={{display: 'flex', justifyContent:"space-around", width: "100%"}}>
+              <SC.primaryColorButtonInverse
+                  className={`modal-button ${isValid}`}
+                  onClick={() => setJobsite('Indeed')}
+                >
+                  indeed
+              </SC.primaryColorButtonInverse>
+              <SC.primaryColorButtonInverse
+                  className={`modal-button ${isValid}`}
+                  onClick={() => setJobsite("LinkedIn")}
+                >
+                  linkedIn
+              </SC.primaryColorButtonInverse>
+              <SC.primaryColorButtonInverse
+                  className={`modal-button ${isValid}`}
+                  onClick={() => setJobsite("ZipRecruiter")}
+                >
+                  zipRecruiter
+              </SC.primaryColorButtonInverse>
+            </div>
           </div>
           {/* LINK */}
           <div className="job-input-container">
@@ -221,7 +283,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
               className="modal-input job"
               type="text"
               maxLength="500"
-              placeholder="Listing URL"
+              placeholder="Listing URL (Cmd/Ctrl + L)"
               onChange={(e) => setLink(e.target.value)}
               required
             ></SC.authInput>

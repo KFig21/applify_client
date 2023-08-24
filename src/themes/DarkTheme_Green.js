@@ -39,6 +39,7 @@ const darkThemeGreen = {
     // text
     booleanTrueGreen: "rgb(29, 147, 76)",
     booleanFalseRed: "crimson",
+    booleanHybridColor: "goldenrod",
     textShadow: "0px 0px 5px black",
     // home
     jobsiteBgColor: "#3a3c41",

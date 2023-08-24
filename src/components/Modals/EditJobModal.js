@@ -149,6 +149,21 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
     closeAnimation(setEditJobModal);
   };
 
+  const setAsToday = () => {
+    const timestamp = new Date(Date.now());
+    const year = timestamp.getUTCFullYear();
+    const month = String(timestamp.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(timestamp.getUTCDate()).padStart(2, '0');
+    let date = `${year}-${month}-${day}`;
+    console.log('date', date)
+    setAppDate(date)
+  }
+
+  const handleNoLocation = () => {
+    setCity("Remote")
+    setLocationState("NA")
+  }
+
   return (
     <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       {job && (
@@ -215,9 +230,15 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
                 className="modal-input job date"
                 name=""
                 id=""
+                value={appDate}
                 onChange={(e) => setAppDate(e.target.value)}
-                defaultValue={job.appDate}
               ></SC.authInput>
+              <SC.primaryColorButtonInverse
+                className={`modal-button ${isValid}`}
+                onClick={() => setAsToday()}
+              >
+                today
+              </SC.primaryColorButtonInverse>
             </div>
             {/* CITY */}
             <div className="job-input-container">
@@ -227,7 +248,7 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
                 type="text"
                 placeholder="City"
                 onChange={(e) => setCity(e.target.value)}
-                defaultValue={job.city}
+                value={city}
                 required
               ></SC.authInput>
             </div>
@@ -239,9 +260,18 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
                 type="text"
                 placeholder="State"
                 onChange={(e) => setLocationState(e.target.value)}
-                defaultValue={job.locationState}
+                value={locationState}
                 required
               ></SC.authInput>
+            </div>
+            <div className="job-input-container">
+              <span className="input-label"></span>
+              <SC.primaryColorButtonInverse
+                  className={`modal-button ${isValid}`}
+                  onClick={() => handleNoLocation()}
+                >
+                  remote/no location
+              </SC.primaryColorButtonInverse>
             </div>
             {/* REMOTE */}
             <RemoteInput remote={remote} setRemote={setRemote} />
@@ -259,9 +289,32 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
                 type="text"
                 placeholder="indeed, monster..."
                 onChange={(e) => setJobsite(e.target.value)}
-                defaultValue={job.jobsite}
+                value={jobsite}
                 required
               ></SC.authInput>
+            </div>
+            <div className="job-input-container">
+              <span className="input-label"></span>
+              <div style={{display: 'flex', justifyContent:"space-around", width: "100%"}}>
+                <SC.primaryColorButtonInverse
+                    className={`modal-button ${isValid}`}
+                    onClick={() => setJobsite('Indeed')}
+                  >
+                    indeed
+                </SC.primaryColorButtonInverse>
+                <SC.primaryColorButtonInverse
+                    className={`modal-button ${isValid}`}
+                    onClick={() => setJobsite("LinkedIn")}
+                  >
+                    linkedIn
+                </SC.primaryColorButtonInverse>
+                <SC.primaryColorButtonInverse
+                    className={`modal-button ${isValid}`}
+                    onClick={() => setJobsite("ZipRecruiter")}
+                  >
+                    zipRecruiter
+                </SC.primaryColorButtonInverse>
+              </div>
             </div>
             {/* LINK */}
             <div className="job-input-container">
@@ -269,7 +322,7 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
               <SC.authInput
                 className="modal-input job"
                 type="text"
-                placeholder="Listing URL"
+                placeholder="Listing URL (Cmd/Ctrl + L)"
                 onChange={(e) => setLink(e.target.value)}
                 defaultValue={job.link}
                 required

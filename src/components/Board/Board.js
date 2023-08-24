@@ -373,6 +373,8 @@ export default function Board() {
                                 ? "true"
                                 : job.remote === "no"
                                 ? "false"
+                                : job.remote === "hybrid"
+                                ? "hybrid"
                                 : "na"
                             }
                           >
@@ -380,6 +382,8 @@ export default function Board() {
                               ? "Y"
                               : job.remote === "no"
                               ? "N"
+                              : job.remote === "hybrid"
+                              ? "Hybrid"
                               : "N/A"}
                           </SC.booleanColorText>
                         </SC.ST_cell_standard>

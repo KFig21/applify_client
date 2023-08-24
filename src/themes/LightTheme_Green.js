@@ -38,6 +38,7 @@ const lightThemeGreen = {
     // text
     booleanTrueGreen: "rgb(29, 147, 76)",
     booleanFalseRed: "crimson",
+    booleanHybridColor: "goldenrod",
     textShadow: "0px 0px 0px transparent",
     // home
     jobsiteBgColor: "rgba(244, 244, 244, 1)",
