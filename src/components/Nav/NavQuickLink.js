@@ -17,11 +17,6 @@ export default function NavQuickLink({link}) {
     console.log('link.value', link)
   return (
     <SC.navLinkSub className='NavQuickLink'>
-        <SC.quicklinksIcon className="NavQuickLink">
-          {link.type === 'link' && <a href={link.value} target="_blank" rel="noopener noreferrer" style={{minWidth: "unset"}}>
-            <Visibility className="quicklinks-icon" />
-          </a>}
-        </SC.quicklinksIcon>
         <SC.quicklinksIcon
             className="copy-icon-container"
             value={link.value}
@@ -34,6 +29,11 @@ export default function NavQuickLink({link}) {
             {floating ? "Copied!" : link.name}
           </SC.navQuickLink>
         </div>
+        <SC.quicklinksIcon className="NavQuickLink">
+          {link.type === 'link' && <a href={link.value} target="_blank" rel="noopener noreferrer" style={{minWidth: "unset"}}>
+            <Visibility className="quicklinks-icon" />
+          </a>}
+        </SC.quicklinksIcon>
     </SC.navLinkSub>
   )
 }
