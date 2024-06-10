@@ -37,10 +37,7 @@ export default function Board() {
   const [board, setBoard] = useState({});
   const [jobs, setJobs] = useState([]);
   const [filterModal, setFilterModal] = useState(false);
-  const [newJobModal, setNewJobModal] = useState(false);
-  const [editJobModal, setEditJobModal] = useState(false);
   const [viewJobModal, setViewJobModal] = useState(false);
-  const [jobToEdit, setJobToEdit] = useState({});
   const [jobToView, setJobToView] = useState({});
   const [boardNameModal, setBoardNameModal] = useState(false);
   const [boardStatsModal, setBoardStatsModal] = useState(false);
@@ -53,11 +50,6 @@ export default function Board() {
   const [filter, setFilter] = useState("none");
   const [filterCol, setFilterCol] = useState("none");
   const [isFiltered, setIsFiltered] = useState(false);
-
-  const handleEditJob = (job) => {
-    setJobToEdit(job);
-    setEditJobModal(true);
-  };
 
   const handleViewJob = (job) => {
     setJobToView(job);
@@ -256,30 +248,25 @@ export default function Board() {
                     // EDIT
                     const _edit = () => {
                       return (
-                        <SC.ST_cell_sticky
-                          {...cell.getCellProps()}
-                          className={`${stickyBG} ${col} center`}
-                          onClick={() => handleEditJob(row.original)}
-                        >
-                          <SC.subtextOnBgColor className="icon-container">
-                            <Create className="favorite-icon" />
-                          </SC.subtextOnBgColor>
-                        </SC.ST_cell_sticky>
+                        <EditJobModal
+                          cell={cell}
+                          stickyBG={stickyBG}
+                          col={col}
+                          job={row.original}
+                          board={board}
+                        />
                       );
                     };
 
                     // VIEW
                     const _view = () => {
                       return (
-                        <SC.ST_cell_sticky
-                          {...cell.getCellProps()}
-                          className={`${stickyBG} ${col} center`}
-                          onClick={() => handleViewJob(row.original)}
-                        >
-                          <SC.subtextOnBgColor className="icon-container">
-                            <Visibility className="favorite-icon" />
-                          </SC.subtextOnBgColor>
-                        </SC.ST_cell_sticky>
+                        <ViewJobModal
+                          cell={cell}
+                          stickyBG={stickyBG}
+                          col={col}
+                          job={row.original}
+                        />
                       );
                     };
                     // LISTING LINK
@@ -538,10 +525,6 @@ export default function Board() {
     );
   }
 
-  const handleCreateNewJob = () => {
-    setNewJobModal(true);
-  };
-
   const handleFilterModal = () => {
     setFilterModal(true);
   };
@@ -650,26 +633,6 @@ export default function Board() {
 
   return (
     <SC.tablePage className="board-page">
-      {/* NEW JOB MODAL */}
-      {newJobModal && (
-        <NewJobModal setNewJobModal={setNewJobModal} board={board} />
-      )}
-      {/* EDIT JOB MODAL */}
-      {editJobModal && (
-        <EditJobModal
-          setEditJobModal={setEditJobModal}
-          job={jobToEdit}
-          board={board}
-        />
-      )}
-      {/* VIEW JOB MODAL */}
-      {viewJobModal && (
-        <ViewJobModal
-          setViewJobModal={setViewJobModal}
-          job={jobToView}
-          board={board}
-        />
-      )}
       {/* EDIT BOARD NAME MODAL */}
       {boardNameModal && (
         <BoardNameModal setBoardNameModal={setBoardNameModal} board={board} />
@@ -731,9 +694,7 @@ export default function Board() {
         <div className="table-header-buttons">
           {/* ADD JOBS */}
           {jobs.length < 1000 && loaded && (
-            <SC.primaryColorButtonInverse onClick={() => handleCreateNewJob()}>
-              + Add a job
-            </SC.primaryColorButtonInverse>
+            <NewJobModal board={board}/>
           )}
           {/* FILTER JOBS */}
           {(jobs.length > 0 || isFiltered) && (

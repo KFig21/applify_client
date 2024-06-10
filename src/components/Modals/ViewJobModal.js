@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import SC from "../../themes/StyledComponents";
 
 import "./Modal.scss";
-import { StarOutlineRounded, Star } from "@material-ui/icons";
+import { Visibility, StarOutlineRounded, Star } from "@material-ui/icons";
 import CloseIcon from "@mui/icons-material/Close";
 import { favJob } from "../../helpers/Api";
 import { closeAnimation } from "./HelperFunctions";
 
-export default function ViewJobModal({ setViewJobModal, job }) {
+export default function ViewJobModal({ cell, stickyBG, col, job }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   const [isFav, setIsFav] = useState(false);
   let jobRes = job.result === "waiting" ? "unresolved" : "resolved";
+  // Modal
+  const [showModal, setShowModal] = useState(false);
 
   // get favorite status
   useEffect(() => {
@@ -40,13 +42,19 @@ export default function ViewJobModal({ setViewJobModal, job }) {
   // modal animation
   const [animation, setAnimation] = useState(true);
 
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
   const handleCloseAnimation = () => {
     setAnimation(false);
-    closeAnimation(setViewJobModal);
+    closeAnimation(setShowModal);
   };
 
   return (
-    <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+    <>
+    {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       <SC.jobFormContainer
         className={"modal-container view " + (animation ? "in" : "out")}
       >
@@ -220,6 +228,16 @@ export default function ViewJobModal({ setViewJobModal, job }) {
         className={"modal-background " + (animation ? "in" : "out")}
         onClick={() => handleCloseAnimation()}
       ></SC.modalBackground>
-    </div>
+    </div>}
+    <SC.ST_cell_sticky
+      {...cell.getCellProps()}
+      className={`${stickyBG} ${col} center`}
+      onClick={() => handleOpenModal()}
+    >
+      <SC.subtextOnBgColor className="icon-container">
+        <Visibility className="favorite-icon" />
+      </SC.subtextOnBgColor>
+    </SC.ST_cell_sticky>
+    </>
   );
 }

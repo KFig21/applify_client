@@ -10,13 +10,13 @@ import RemoteInput from "./components/job/RemoteInput";
 import ResultInput from "./components/job/ResultInput";
 import StatusInput from "./components/job/StatusInput";
 import "./Modal.scss";
-import { StarOutlineRounded, Star } from "@material-ui/icons";
+import { Create, StarOutlineRounded, Star } from "@material-ui/icons";
 import { favJob } from "../../helpers/Api";
 import { closeAnimation } from "./HelperFunctions";
 import axios from "axios";
 import { url } from "../../helpers/Api";
 
-export default function EditJobModal({ setEditJobModal, job, board }) {
+export default function EditJobModal({ cell, stickyBG, col, job, board }) {
   const [isValid, setIsValid] = useState(false);
   const [errorHandler, setErrorHandler] = useState({
     error: false,
@@ -48,6 +48,8 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
   const [notes, setNotes] = useState(job.notes);
   const [favorite, setFavorite] = useState(job.favorite);
   const [isFav, setIsFav] = useState(false);
+  // Modal
+  const [showModal, setShowModal] = useState(false);
 
   // get favorite status
   useEffect(() => {
@@ -96,7 +98,7 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
             })
             .then(() => {
               setErrorHandler({ error: false, message: "" });
-              setEditJobModal(false);
+              setShowModal(false);
               window.location.reload();
             })
             .catch((error) => {
@@ -126,7 +128,7 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
         setErrorHandler
       )
     );
-    setEditJobModal(false);
+    setShowModal(false);
     window.location.reload();
   };
 
@@ -144,9 +146,14 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
   // modal animation
   const [animation, setAnimation] = useState(true);
 
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
   const handleCloseAnimation = () => {
     setAnimation(false);
-    closeAnimation(setEditJobModal);
+    closeAnimation(setShowModal);
   };
 
   const setAsToday = () => {
@@ -165,7 +172,7 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
   }
 
   return (
-    <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+    <>{showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       {job && (
         <SC.jobFormContainer
           className={"modal-container job " + (animation ? "in" : "out")}
@@ -438,6 +445,16 @@ export default function EditJobModal({ setEditJobModal, job, board }) {
         className={"modal-background " + (animation ? "in" : "out")}
         onClick={() => handleCloseAnimation(false)}
       ></SC.modalBackground>
-    </div>
+    </div>}
+    <SC.ST_cell_sticky
+      {...cell.getCellProps()}
+      className={`${stickyBG} ${col} center`}
+      onClick={() => handleOpenModal()}
+    >
+      <SC.subtextOnBgColor className="icon-container">
+        <Create className="favorite-icon" />
+      </SC.subtextOnBgColor>
+    </SC.ST_cell_sticky>
+    </>
   );
 }

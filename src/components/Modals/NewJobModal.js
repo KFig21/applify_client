@@ -14,7 +14,7 @@ import StatusInput from "./components/job/StatusInput";
 import { closeAnimation } from "./HelperFunctions";
 import "./Modal.scss";
 
-export default function NewJobModal({ setNewJobModal, board }) {
+export default function NewJobModal({ board }) {
   const [isValid, setIsValid] = useState(false);
   const [errorHandler, setErrorHandler] = useState({
     error: false,
@@ -49,6 +49,8 @@ export default function NewJobModal({ setNewJobModal, board }) {
   const day = String(timestamp.getUTCDate()).padStart(2, '0');
   let date = `${year}-${month}-${day}`;
   const [appDate, setAppDate] = useState(date);
+  // Modal
+  const [showModal, setShowModal] = useState(false);
 
   const handleAddNewJob = () => {
     try {
@@ -82,7 +84,7 @@ export default function NewJobModal({ setNewJobModal, board }) {
             })
             .then(() => {
               setErrorHandler({ error: false, message: "" });
-              setNewJobModal(false);
+              setShowModal(false);
               window.location.reload();
             })
             .catch((error) => {
@@ -120,9 +122,14 @@ export default function NewJobModal({ setNewJobModal, board }) {
   // modal animation
   const [animation, setAnimation] = useState(true);
 
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
   const handleCloseAnimation = () => {
     setAnimation(false);
-    closeAnimation(setNewJobModal);
+    closeAnimation(setShowModal);
   };
 
   const setAsToday = () => {
@@ -140,7 +147,8 @@ export default function NewJobModal({ setNewJobModal, board }) {
   }
 
   return (
-    <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+    <>
+    {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       <SC.jobFormContainer
         className={"modal-container job " + (animation ? "in" : "out")}
       >
@@ -368,6 +376,10 @@ export default function NewJobModal({ setNewJobModal, board }) {
         className={"modal-background " + (animation ? "in" : "out")}
         onClick={() => handleCloseAnimation()}
       ></SC.modalBackground>
-    </div>
+    </div>}
+    <SC.primaryColorButtonInverse onClick={() => handleOpenModal()}>
+      + Add a job
+    </SC.primaryColorButtonInverse>
+    </>
   );
 }
