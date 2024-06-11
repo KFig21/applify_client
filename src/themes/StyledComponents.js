@@ -289,14 +289,6 @@ const SC = {
         }
       }
     }
-
-    @media (min-height: 421px) {
-      @media (max-width: 800px) {
-        &.quicklinks-link {
-          display: none;
-        }
-      }
-    }
   `,
   boardListContainer: styled.div`
     position: absolute;

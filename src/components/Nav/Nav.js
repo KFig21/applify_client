@@ -82,7 +82,7 @@ export default function Nav({ currentPage }) {
             )}
           </SC.boardsLink>
           {/* QUICKLINKS */}
-          <SC.boardsLink className="quicklinks-link">
+          <SC.boardsLink className="boards-link">
               <SC.navLink
                 className={
                   "sidebar-link boards " +

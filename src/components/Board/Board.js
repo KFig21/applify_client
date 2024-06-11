@@ -37,8 +37,6 @@ export default function Board() {
   const [board, setBoard] = useState({});
   const [jobs, setJobs] = useState([]);
   const [filterModal, setFilterModal] = useState(false);
-  const [viewJobModal, setViewJobModal] = useState(false);
-  const [jobToView, setJobToView] = useState({});
   const [boardNameModal, setBoardNameModal] = useState(false);
   const [boardStatsModal, setBoardStatsModal] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -50,11 +48,6 @@ export default function Board() {
   const [filter, setFilter] = useState("none");
   const [filterCol, setFilterCol] = useState("none");
   const [isFiltered, setIsFiltered] = useState(false);
-
-  const handleViewJob = (job) => {
-    setJobToView(job);
-    setViewJobModal(true);
-  };
 
   const columns = React.useMemo(
     () => [
