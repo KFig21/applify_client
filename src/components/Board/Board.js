@@ -17,14 +17,12 @@ import {
   Create,
   StarOutlineRounded,
   Star,
-  Visibility,
   FastForward,
   SkipNext,
   SkipPrevious,
   FastRewind,
 } from "@material-ui/icons";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import LinkIcon from "@mui/icons-material/Link";
 
 // sticky table repo https://github.com/GuillaumeJasmin/react-table-sticky
@@ -38,7 +36,6 @@ export default function Board() {
   const [jobs, setJobs] = useState([]);
   const [filterModal, setFilterModal] = useState(false);
   const [boardNameModal, setBoardNameModal] = useState(false);
-  const [boardStatsModal, setBoardStatsModal] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [pageloaded, setPageloaded] = useState(false);
   const [sort, setSort] = useState("appDate");
@@ -630,21 +627,6 @@ export default function Board() {
       {boardNameModal && (
         <BoardNameModal setBoardNameModal={setBoardNameModal} board={board} />
       )}
-      {/* BOARD STATS MODAL */}
-      {boardStatsModal && (
-        <BoardStatsModal
-          setBoardStatsModal={setBoardStatsModal}
-          board={board}
-          filter={filter}
-          filterCol={filterCol}
-          setFilter={setFilter}
-          setFilterCol={setFilterCol}
-          fetchBoard={fetchBoard}
-          setLoaded={setLoaded}
-          setIsFiltered={setIsFiltered}
-          resetBoard={resetBoard}
-        />
-      )}
       {/* FILTER BOARD MODAL */}
       {filterModal && (
         <FilterJobsModal
@@ -705,14 +687,21 @@ export default function Board() {
             </SC.primaryColorButtonInverse>
           )}
           {/* BOARD STATS */}
-          {jobs.length > 0 && (
-            <SC.primaryColorButtonInverse
-              className={`filter-icon-container `}
-              onClick={() => setBoardStatsModal(true)}
-            >
-              <QueryStatsIcon className="filter-icon" />
-            </SC.primaryColorButtonInverse>
-          )}
+          {jobs.length > 0 && 
+          
+          <BoardStatsModal
+            board={board}
+            filter={filter}
+            filterCol={filterCol}
+            setFilter={setFilter}
+            setFilterCol={setFilterCol}
+            fetchBoard={fetchBoard}
+            setLoaded={setLoaded}
+            setIsFiltered={setIsFiltered}
+            resetBoard={resetBoard}
+          />
+            
+          }
         </div>
       </div>
       {pageloaded ? (

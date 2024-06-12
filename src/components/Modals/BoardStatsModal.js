@@ -6,9 +6,9 @@ import Loader from "../Loader/Loader";
 import { closeAnimation } from "./HelperFunctions";
 import "./Modal.scss";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
 
 export default function BoardStatsModal({
-  setBoardStatsModal,
   board,
   setFilter,
   setFilterCol,
@@ -34,11 +34,13 @@ export default function BoardStatsModal({
     "not selected": 0,
   };
   const [statusStats, setStatusStats] = useState([]);
-  const [resultsStats, setResultsStats] = useState([]);
+  const [resultsStats, setResultsStats] = useState([]);  
+  // Modal
+  const [showModal, setShowModal] = useState(false);
 
   const handleFilter = (_filter, _filterCol) => {
     setLoaded(false);
-    setBoardStatsModal(false);
+    setShowModal(false);
     setFilter(_filter);
     setFilterCol(_filterCol);
     setIsFiltered(true);
@@ -118,13 +120,19 @@ export default function BoardStatsModal({
   // modal animation
   const [animation, setAnimation] = useState(true);
 
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
   const handleCloseAnimation = () => {
     setAnimation(false);
-    closeAnimation(setBoardStatsModal);
+    closeAnimation(setShowModal);
   };
 
   return (
-    <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+    <>
+    {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       <SC.authModalContainer
         className={"modal-container " + (animation ? "in" : "out")}
       >
@@ -237,6 +245,13 @@ export default function BoardStatsModal({
         className={"modal-background " + (animation ? "in" : "out")}
         onClick={() => handleCloseAnimation()}
       ></SC.modalBackground>
-    </div>
+    </div>}
+    <SC.primaryColorButtonInverse
+      className={`filter-icon-container `}
+      onClick={() => handleOpenModal()}
+    >
+      <QueryStatsIcon className="filter-icon" />
+    </SC.primaryColorButtonInverse>
+    </>
   );
 }
