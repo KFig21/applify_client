@@ -8,20 +8,23 @@ import ResultFilter from "./components/filter/ResultFilter";
 import StatusFilter from "./components/filter/StatusFilter";
 import TypeFilter from "./components/filter/TypeFilter";
 import { closeAnimation } from "./HelperFunctions";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import "./Modal.scss";
 
 export default function FilterJobsModal({
-  setFilterModal,
   setFilter,
   setFilterCol,
   filter,
   filterCol,
   fetchBoard,
   setLoaded,
+  isFiltered,
   setIsFiltered,
   resetBoard,
 }) {
   const [isValid, setIsValid] = useState(false);
+  // Modal
+  const [showModal, setShowModal] = useState(false);
 
   const handleClearFilter = () => {
     setLoaded(false);
@@ -29,14 +32,14 @@ export default function FilterJobsModal({
     setFilter("none");
     setFilterCol("none");
     resetBoard();
-    setFilterModal(false);
+    setShowModal(false);
   };
 
   const handleFilter = () => {
     setLoaded(false);
     setIsFiltered(true);
     fetchBoard();
-    setFilterModal(false);
+    setShowModal(false);
   };
 
   const handleChangeCol = (newCol) => {
@@ -55,13 +58,19 @@ export default function FilterJobsModal({
   // modal animation
   const [animation, setAnimation] = useState(true);
 
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
   const handleCloseAnimation = () => {
     setAnimation(false);
-    closeAnimation(setFilterModal);
+    closeAnimation(setShowModal);
   };
 
   return (
-    <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+    <>
+   {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       <SC.authModalContainer
         className={"modal-container  " + (animation ? "in" : "out")}
       >
@@ -119,6 +128,19 @@ export default function FilterJobsModal({
         className={"modal-background " + (animation ? "in" : "out")}
         onClick={() => handleCloseAnimation()}
       ></SC.modalBackground>
-    </div>
+    </div>}
+    <SC.primaryColorButtonInverse
+    className={`filter-icon-container ${isFiltered && " filtered"}`}
+    onClick={() => handleOpenModal()}
+    >
+      <FilterAltIcon className="filter-icon" />
+      {filterCol === "none" && filter === "none" && (
+        <span className="filter-text">filter</span>
+      )}
+      {filterCol !== "none" && filter !== "none" && (
+        <strong className="filter-text">{`${filterCol}: ${filter}`}</strong>
+      )}
+    </SC.primaryColorButtonInverse>
+    </>
   );
 }

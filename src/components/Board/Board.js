@@ -21,7 +21,6 @@ import {
   SkipPrevious,
   FastRewind,
 } from "@material-ui/icons";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import LinkIcon from "@mui/icons-material/Link";
 
 // sticky table repo https://github.com/GuillaumeJasmin/react-table-sticky
@@ -33,8 +32,6 @@ export default function Board() {
   const boardParams = useParams("id");
   const [board, setBoard] = useState({});
   const [jobs, setJobs] = useState([]);
-  const [filterModal, setFilterModal] = useState(false);
-  const [boardNameModal, setBoardNameModal] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [pageloaded, setPageloaded] = useState(false);
   const [sort, setSort] = useState("appDate");
@@ -514,10 +511,6 @@ export default function Board() {
     );
   }
 
-  const handleFilterModal = () => {
-    setFilterModal(true);
-  };
-
   const handlePage = async (dir) => {
     if (dir === "right") {
       if (board.applications > skip + limit) {
@@ -604,10 +597,6 @@ export default function Board() {
     fetchJobs(0, "appDate", -1, limit, "none", "none");
   };
 
-  const handleEditBoardName = async () => {
-    setBoardNameModal(true);
-  };
-
   useEffect(() => {
     fetchBoard();
   }, [user]);
@@ -622,25 +611,11 @@ export default function Board() {
 
   return (
     <SC.tablePage className="board-page">
-      {/* FILTER BOARD MODAL */}
-      {filterModal && (
-        <FilterJobsModal
-          setFilterModal={setFilterModal}
-          filter={filter}
-          filterCol={filterCol}
-          setFilter={setFilter}
-          setFilterCol={setFilterCol}
-          fetchBoard={fetchBoard}
-          setLoaded={setLoaded}
-          setIsFiltered={setIsFiltered}
-          resetBoard={resetBoard}
-        />
-      )}
       {/* TABLE DETAIL */}
       <div className="table-detail-container">
         <SC.textOnBgColor className="table-name">
           {board.boardname ? board.boardname : "Loading"}
-          <BoardNameModal setBoardNameModal={setBoardNameModal} board={board} />
+          <BoardNameModal board={board} />
         </SC.textOnBgColor>
         {/* BOARD STATS */}
         <SC.boardStats className="board-stats">
@@ -664,18 +639,17 @@ export default function Board() {
           )}
           {/* FILTER JOBS */}
           {(jobs.length > 0 || isFiltered) && (
-            <SC.primaryColorButtonInverse
-              className={`filter-icon-container ${isFiltered && " filtered"}`}
-              onClick={() => handleFilterModal()}
-            >
-              <FilterAltIcon className="filter-icon" />
-              {filterCol === "none" && filter === "none" && (
-                <span className="filter-text">filter</span>
-              )}
-              {filterCol !== "none" && filter !== "none" && (
-                <strong className="filter-text">{`${filterCol}: ${filter}`}</strong>
-              )}
-            </SC.primaryColorButtonInverse>
+            <FilterJobsModal
+              filter={filter}
+              filterCol={filterCol}
+              setFilter={setFilter}
+              setFilterCol={setFilterCol}
+              fetchBoard={fetchBoard}
+              setLoaded={setLoaded}
+              isFiltered={isFiltered}
+              setIsFiltered={setIsFiltered}
+              resetBoard={resetBoard}
+            />
           )}
           {/* BOARD STATS */}
           {jobs.length > 0 && 
