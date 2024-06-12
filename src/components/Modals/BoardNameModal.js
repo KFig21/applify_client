@@ -6,8 +6,9 @@ import { changeBoardName, deleteBoard } from "../../store/actions/boardActions";
 import SC from "../../themes/StyledComponents";
 import { closeAnimation } from "./HelperFunctions";
 import "./Modal.scss";
+import { Create } from "@material-ui/icons";
 
-export default function BoardNameModal({ setBoardNameModal, board }) {
+export default function BoardNameModal({ board }) {
   const [boardname, setBoardname] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [showDeleteButton, setShowDeleteButton] = useState(false);
@@ -18,6 +19,8 @@ export default function BoardNameModal({ setBoardNameModal, board }) {
   });
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
+  // Modal
+  const [showModal, setShowModal] = useState(false);
 
   const handleChangeBoardName = () => {
     if (boardname.length > 0) {
@@ -33,7 +36,7 @@ export default function BoardNameModal({ setBoardNameModal, board }) {
       );
       setBoardname("");
     }
-    setBoardNameModal(false);
+    setShowModal(false);
     window.location.reload();
   };
 
@@ -47,7 +50,7 @@ export default function BoardNameModal({ setBoardNameModal, board }) {
         setErrorHandler
       )
     );
-    setBoardNameModal(false);
+    setShowModal(false);
     return redirect("/");
   };
 
@@ -62,13 +65,18 @@ export default function BoardNameModal({ setBoardNameModal, board }) {
   // modal animation
   const [animation, setAnimation] = useState(true);
 
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
   const handleCloseAnimation = () => {
     setAnimation(false);
-    closeAnimation(setBoardNameModal);
+    closeAnimation(setShowModal);
   };
 
-  return (
-    <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+  return (<>
+    {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
       <SC.authModalContainer
         className={"modal-container " + (animation ? "in" : "out")}
       >
@@ -137,6 +145,11 @@ export default function BoardNameModal({ setBoardNameModal, board }) {
         className={"modal-background " + (animation ? "in" : "out")}
         onClick={() => handleCloseAnimation()}
       ></SC.modalBackground>
-    </div>
+    </div>}
+    <Create
+      className="edit-board-icon"
+      onClick={() => handleOpenModal()}
+    />
+    </>
   );
 }

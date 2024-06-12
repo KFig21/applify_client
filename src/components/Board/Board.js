@@ -14,7 +14,6 @@ import FilterJobsModal from "../Modals/FilterJobsModal";
 import ViewJobModal from "../Modals/ViewJobModal";
 import BoardStatsModal from "../Modals/BoardStatsModal";
 import {
-  Create,
   StarOutlineRounded,
   Star,
   FastForward,
@@ -623,10 +622,6 @@ export default function Board() {
 
   return (
     <SC.tablePage className="board-page">
-      {/* EDIT BOARD NAME MODAL */}
-      {boardNameModal && (
-        <BoardNameModal setBoardNameModal={setBoardNameModal} board={board} />
-      )}
       {/* FILTER BOARD MODAL */}
       {filterModal && (
         <FilterJobsModal
@@ -645,11 +640,7 @@ export default function Board() {
       <div className="table-detail-container">
         <SC.textOnBgColor className="table-name">
           {board.boardname ? board.boardname : "Loading"}
-
-          <Create
-            className="edit-board-icon"
-            onClick={() => handleEditBoardName()}
-          />
+          <BoardNameModal setBoardNameModal={setBoardNameModal} board={board} />
         </SC.textOnBgColor>
         {/* BOARD STATS */}
         <SC.boardStats className="board-stats">
