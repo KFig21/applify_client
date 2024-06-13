@@ -140,7 +140,6 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
         setIsValid(false);
       }
     }
-    console.log(job);
   }, [company]);
 
   // modal animation
