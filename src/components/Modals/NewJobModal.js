@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import { url } from "../../helpers/Api";
-import { createNewJob } from "../../store/actions/jobActions";
 import SC from "../../themes/StyledComponents";
 import AppliedInput from "./components/job/AppliedInput";
 import JobtypeInput from "./components/job/JobtypeInput";
@@ -51,6 +50,14 @@ export default function NewJobModal({ board }) {
   const [appDate, setAppDate] = useState(date);
   // Modal
   const [showModal, setShowModal] = useState(false);
+
+  // When the modal opens, focus on the first input
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (showModal) {
+      inputRef.current.focus();
+    }
+  }, [showModal]);
 
   const handleAddNewJob = () => {
     try {
@@ -184,6 +191,7 @@ export default function NewJobModal({ board }) {
               maxLength="50"
               placeholder="Company name"
               onChange={(e) => setCompany(e.target.value)}
+              ref={inputRef}
               required
             ></SC.authInput>
           </div>
