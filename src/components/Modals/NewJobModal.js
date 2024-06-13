@@ -146,6 +146,24 @@ export default function NewJobModal({ board }) {
     setLocationState("NA")
   }
 
+  const handleSetLink = (link) => {
+    setLink(link)
+    
+    if (/linkedin/i.test(link)) {
+      setJobsite('LinkedIn');
+    } else if (/indeed/i.test(link)) {
+      setJobsite('Indeed');
+    } else if (/glassdoor/i.test(link)) {
+      setJobsite('Glassdoor');
+    } else if (/monster/i.test(link)) {
+      setJobsite('Monster');
+    } else if (/ziprecruiter/i.test(link)) {
+      setJobsite('ZipRecruiter');
+    } else if (/google/i.test(link)) {
+      setJobsite('Google');
+    }
+  }
+
   return (
     <>
     {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
@@ -292,7 +310,7 @@ export default function NewJobModal({ board }) {
               type="text"
               maxLength="500"
               placeholder="Listing URL (Cmd/Ctrl + L)"
-              onChange={(e) => setLink(e.target.value)}
+              onChange={(e) => handleSetLink(e.target.value)}
               required
             ></SC.authInput>
           </div>

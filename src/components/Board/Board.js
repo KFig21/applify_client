@@ -239,6 +239,7 @@ export default function Board() {
                           col={col}
                           job={row.original}
                           board={board}
+                          updateBoardAndJobs={updateBoardAndJobs}
                         />
                       );
                     };
@@ -595,6 +596,12 @@ export default function Board() {
     setBoard(await getBoard(boardParams.id, "none", "none"));
     fetchJobs(0, "appDate", -1, limit, "none", "none");
   };
+
+  const updateBoardAndJobs = (job) => {
+    job._id = job.job
+    const updatedJobs = jobs.map((j) => (j._id === job._id ? job : j));
+    setJobs(updatedJobs);
+  }
 
   useEffect(() => {
     fetchBoard();

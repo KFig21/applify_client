@@ -17,7 +17,7 @@ import axios from "axios";
 import { url } from "../../helpers/Api";
 import Loader from "../Loader/Loader";
 
-export default function EditJobModal({ cell, stickyBG, col, job, board }) {
+export default function EditJobModal({ cell, stickyBG, col, job, board, updateBoardAndJobs }) {
   const [isValid, setIsValid] = useState(false);
   const [errorHandler, setErrorHandler] = useState({
     error: false,
@@ -53,6 +53,19 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
   // Modal
   const [showModal, setShowModal] = useState(false);
 
+  // modal animation
+  const [animation, setAnimation] = useState(true);
+
+  const handleOpenModal = () => {
+    setAnimation(true)
+    setShowModal(true);
+  }
+
+  const handleCloseAnimation = () => {
+    setAnimation(false);
+    closeAnimation(setShowModal);
+  };
+
   // get favorite status
   useEffect(() => {
     setIsFav(job.favorite);
@@ -71,37 +84,38 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
     try {
       const editJobData = async () => {
         try {
+          const data = {
+            user: state._id,
+            job: job._id,
+            board: board._id,
+            company: company,
+            position: position,
+            applied: applied,
+            appDate: appDate,
+            city: city,
+            locationState: locationState,
+            remote: remote,
+            status: status,
+            result: result,
+            jobtype: jobtype,
+            jobsite: jobsite,
+            username: username,
+            password: password,
+            link: link,
+            payType: payType,
+            payScale: payScale,
+            payMin: payMin,
+            payMax: payMax,
+            pay: pay,
+            notes: notes,
+            favorite: favorite,
+          }
           await axios
-            .put(`${url}/jobs/edit`, {
-              user: state._id,
-              job: job._id,
-              board: board._id,
-              company: company,
-              position: position,
-              applied: applied,
-              appDate: appDate,
-              city: city,
-              locationState: locationState,
-              remote: remote,
-              status: status,
-              result: result,
-              jobtype: jobtype,
-              jobsite: jobsite,
-              username: username,
-              password: password,
-              link: link,
-              payType: payType,
-              payScale: payScale,
-              payMin: payMin,
-              payMax: payMax,
-              pay: pay,
-              notes: notes,
-              favorite: favorite,
-            })
+            .put(`${url}/jobs/edit`, data)
             .then(() => {
               setErrorHandler({ error: false, message: "" });
-              setShowModal(false);
-              window.location.reload();
+              updateBoardAndJobs(data)
+              handleCloseAnimation(false)
             })
             .catch((error) => {
               setErrorHandler({
@@ -148,18 +162,7 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
     }
   }, [company]);
 
-  // modal animation
-  const [animation, setAnimation] = useState(true);
 
-  const handleOpenModal = () => {
-    setAnimation(true)
-    setShowModal(true);
-  }
-
-  const handleCloseAnimation = () => {
-    setAnimation(false);
-    closeAnimation(setShowModal);
-  };
 
   const setAsToday = () => {
     const timestamp = new Date(Date.now());
@@ -173,6 +176,24 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
   const handleNoLocation = () => {
     setCity("Remote")
     setLocationState("NA")
+  }
+
+  const handleSetLink = (link) => {
+    setLink(link)
+    
+    if (/linkedin/i.test(link)) {
+      setJobsite('LinkedIn');
+    } else if (/indeed/i.test(link)) {
+      setJobsite('Indeed');
+    } else if (/glassdoor/i.test(link)) {
+      setJobsite('Glassdoor');
+    } else if (/monster/i.test(link)) {
+      setJobsite('Monster');
+    } else if (/ziprecruiter/i.test(link)) {
+      setJobsite('ZipRecruiter');
+    } else if (/google/i.test(link)) {
+      setJobsite('Google');
+    }
   }
 
   return (
@@ -339,7 +360,7 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
                 className="modal-input job"
                 type="text"
                 placeholder="Listing URL (Cmd/Ctrl + L)"
-                onChange={(e) => setLink(e.target.value)}
+                onChange={(e) => handleSetLink(e.target.value)}
                 defaultValue={job.link}
                 required
               ></SC.authInput>
