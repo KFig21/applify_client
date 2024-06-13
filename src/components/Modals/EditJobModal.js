@@ -158,11 +158,10 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
 
   const setAsToday = () => {
     const timestamp = new Date(Date.now());
-    const year = timestamp.getUTCFullYear();
-    const month = String(timestamp.getUTCMonth() + 1).padStart(2, '0');
-    const day = String(timestamp.getUTCDate()).padStart(2, '0');
+    const year = timestamp.getFullYear();
+    const month = String(timestamp.getMonth() + 1).padStart(2, '0');
+    const day = String(timestamp.getDate()).padStart(2, '0');
     let date = `${year}-${month}-${day}`;
-    console.log('date', date)
     setAppDate(date)
   }
 
