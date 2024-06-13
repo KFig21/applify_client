@@ -14,7 +14,7 @@ export default function NavQuickLink({link}) {
         setFloating(false);
       }, 1000);
     }
-    console.log('link.value', link)
+    
   return (
     <SC.navLinkSub className='NavQuickLink'>
         <SC.quicklinksIcon

@@ -177,7 +177,6 @@ export default function Board() {
           <div {...getTableBodyProps()}>
             {rows.map((row, i) => {
               prepareRow(row);
-              // console.log(row);
               return (
                 <SC.ST_tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {

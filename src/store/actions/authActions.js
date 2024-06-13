@@ -67,8 +67,6 @@ export const logout = () => {
 export const loadUser = () => {
   return (dispatch, getState) => {
     const token_applify = getState().user.token_applify;
-    // const user = jwtDecode(token_applify);
-    // console.log(user);
     if (token_applify) {
       dispatch({
         type: CURRENT_USER,
