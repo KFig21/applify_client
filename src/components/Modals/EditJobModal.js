@@ -15,6 +15,7 @@ import { favJob } from "../../helpers/Api";
 import { closeAnimation } from "./HelperFunctions";
 import axios from "axios";
 import { url } from "../../helpers/Api";
+import Loader from "../Loader/Loader";
 
 export default function EditJobModal({ cell, stickyBG, col, job, board }) {
   const [isValid, setIsValid] = useState(false);
@@ -48,6 +49,7 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
   const [notes, setNotes] = useState(job.notes);
   const [favorite, setFavorite] = useState(job.favorite);
   const [isFav, setIsFav] = useState(false);
+  const [disableClick, setDisableClick] = useState(false)
   // Modal
   const [showModal, setShowModal] = useState(false);
 
@@ -117,8 +119,9 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
     }
   };
 
-  const handleDeleteJob = () => {
-    dispatch(
+  const handleDeleteJob = async () => {
+    setDisableClick(true)
+    await dispatch(
       deleteJob(
         {
           user: state._id,
@@ -128,8 +131,11 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
         setErrorHandler
       )
     );
-    setShowModal(false);
-    window.location.reload();
+    setTimeout(() => {
+      setShowModal(false);
+      window.location.reload();
+      setDisableClick(false)
+    }, 1000)
   };
 
   useEffect(() => {
@@ -171,6 +177,11 @@ export default function EditJobModal({ cell, stickyBG, col, job, board }) {
 
   return (
     <>{showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
+      {
+        disableClick && <div className="noClickOverlay">
+          <Loader type='full-screen'/>
+        </div>
+      }
       {job && (
         <SC.jobFormContainer
           className={"modal-container job " + (animation ? "in" : "out")}

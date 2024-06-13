@@ -85,6 +85,28 @@ $width: 800px;
   }
 }
 
+.loader-small {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.noClickOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.2); /* semi-transparent gray background */
+  backdrop-filter: blur(6px); /* optional: backdrop blur effect */
+}
+
 // SCROLLBAR
 ::-webkit-scrollbar {
   width: 23px;
