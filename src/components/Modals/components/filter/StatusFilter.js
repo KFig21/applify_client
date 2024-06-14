@@ -58,6 +58,22 @@ export default function StatusFilter({ filter, setFilter }) {
                 onChange={() => setFilter("viewed")}
               />
             </div>
+            {/* Contacted */}
+            <div className="job-radio-wrapper">
+              <SC.jobFormRadioLabel
+                htmlFor="status-contacted"
+                className={`job-radio-label contacted ${filter === "contacted"}`}
+              >
+                contacted
+              </SC.jobFormRadioLabel>
+              <input
+                type="radio"
+                name="status"
+                id="status-contacted"
+                className="job-radio-input"
+                onChange={() => setFilter("contacted")}
+              />
+            </div>
             {/* INTERVIEWED */}
             <div className="job-radio-wrapper">
               <SC.jobFormRadioLabel

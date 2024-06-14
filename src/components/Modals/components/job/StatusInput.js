@@ -58,6 +58,21 @@ export default function StatusInput({ status, setStatus }) {
           </div>
           <div className="job-radio-wrapper">
             <SC.jobFormRadioLabel
+              htmlFor="status-contacted"
+              className={`job-radio-label contacted ${status === "contacted"}`}
+            >
+              contacted
+            </SC.jobFormRadioLabel>
+            <input
+              type="radio"
+              name="status"
+              id="status-contacted"
+              className="job-radio-input"
+              onChange={() => setStatus("contacted")}
+            />
+          </div>
+          <div className="job-radio-wrapper">
+            <SC.jobFormRadioLabel
               htmlFor="status-interviewed"
               className={`job-radio-label interviewed ${
                 status === "interviewed"

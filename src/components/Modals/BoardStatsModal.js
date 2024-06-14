@@ -22,6 +22,7 @@ export default function BoardStatsModal({
     waiting: 0,
     applied: 0,
     viewed: 0,
+    contacted: 0,
     interviewed: 0,
     offered: 0,
     accepted: 0,
@@ -72,20 +73,28 @@ export default function BoardStatsModal({
           statusObj["applied"]++;
           statusObj["viewed"]++;
           break;
+        case "contacted":
+          statusObj["applied"]++;
+          statusObj["viewed"]++;
+          statusObj["contacted"]++;
+          break;
         case "interviewed":
           statusObj["applied"]++;
           statusObj["viewed"]++;
+          statusObj["contacted"]++;
           statusObj["interviewed"]++;
           break;
         case "offered":
           statusObj["applied"]++;
           statusObj["viewed"]++;
+          statusObj["contacted"]++;
           statusObj["interviewed"]++;
           statusObj["offered"]++;
           break;
         case "accepted":
           statusObj["applied"]++;
           statusObj["viewed"]++;
+          statusObj["contacted"]++;
           statusObj["interviewed"]++;
           statusObj["offered"]++;
           statusObj["accepted"]++;

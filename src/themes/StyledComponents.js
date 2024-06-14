@@ -507,6 +507,18 @@ const SC = {
         color: ${(props) => props.theme.colors.viewed_Text_true} !important;
       }
     }
+    &.contacted {
+      border-color: ${(props) => props.theme.colors.contacted_Border} !important;
+      background-color: ${(props) => props.theme.colors.contacted_Bg} !important;
+      color: ${(props) => props.theme.colors.contacted_Text} !important;
+      &.true {
+        border-color: ${(props) =>
+          props.theme.colors.contacted_Border_true} !important;
+        background-color: ${(props) =>
+          props.theme.colors.contacted_Bg_true} !important;
+        color: ${(props) => props.theme.colors.contacted_Text_true} !important;
+      }
+    }
     &.interviewed {
       border-color: ${(props) =>
         props.theme.colors.interviewed_Border} !important;
@@ -1512,6 +1524,13 @@ const SC = {
           background-color: ${(props) =>
             props.theme.colors.viewed_Bg} !important;
         }
+        &.contacted {
+          border-color: ${(props) =>
+            props.theme.colors.contacted_Border_true} !important;
+          color: ${(props) => props.theme.colors.contacted_Border_true};
+          background-color: ${(props) =>
+            props.theme.colors.contacted_Bg} !important;
+        }
         &.interviewed {
           border-color: ${(props) =>
             props.theme.colors.interviewed_Border_true} !important;
@@ -1961,6 +1980,9 @@ const SC = {
     &.viewed {
       background-color: ${(props) => props.theme.colors.viewed_Bg} !important;
     }
+    &.contacted {
+      background-color: ${(props) => props.theme.colors.contacted_Bg} !important;
+    }
     &.interviewed {
       background-color: ${(props) =>
         props.theme.colors.interviewed_Bg} !important;
@@ -1999,6 +2021,10 @@ const SC = {
     &.viewed {
       background-color: ${(props) =>
         props.theme.colors.viewed_Border_true} !important;
+    }
+    &.contacted {
+      background-color: ${(props) =>
+        props.theme.colors.contacted_Border_true} !important;
     }
     &.interviewed {
       background-color: ${(props) =>

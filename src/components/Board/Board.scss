@@ -187,6 +187,11 @@
                   color: rgba(255, 153, 0, 1);
                   background-color: rgba(255, 153, 0, 0.3);
                 }
+                &.contacted {
+                  border-color: rgb(195, 0, 255);
+                  color: rgb(195, 0, 255);
+                  background-color: rgba(195, 0, 255, 0.3);
+                }
                 &.interviewed {
                   border-color: rgba(255, 217, 0, 1);
                   color: rgba(255, 217, 0, 1);
