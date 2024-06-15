@@ -274,6 +274,18 @@ export default function NewJobModal({ board }) {
           <ResultInput result={result} setResult={setResult} />
           {/* TYPE */}
           <JobtypeInput jobtype={jobtype} setJobtype={setJobtype} />
+          {/* LINK */}
+          <div className="job-input-container">
+            <span className="input-label">Link</span>
+            <SC.authInput
+              className="modal-input job"
+              type="text"
+              maxLength="500"
+              placeholder="Listing URL (Cmd/Ctrl + L)"
+              onChange={(e) => handleSetLink(e.target.value)}
+              required
+            ></SC.authInput>
+          </div>
           {/* SITE */}
           <div className="job-input-container">
             <span className="input-label">Site</span>
@@ -284,41 +296,6 @@ export default function NewJobModal({ board }) {
               placeholder="indeed, monster..."
               onChange={(e) => setJobsite(e.target.value)}
               value={jobsite}
-              required
-            ></SC.authInput>
-          </div>
-          <div className="job-input-container">
-            <span className="input-label"></span>
-            <div style={{display: 'flex', justifyContent:"space-around", width: "100%"}}>
-              <SC.primaryColorButtonInverse
-                  className={`modal-button ${isValid}`}
-                  onClick={() => setJobsite('Indeed')}
-                >
-                  indeed
-              </SC.primaryColorButtonInverse>
-              <SC.primaryColorButtonInverse
-                  className={`modal-button ${isValid}`}
-                  onClick={() => setJobsite("LinkedIn")}
-                >
-                  linkedIn
-              </SC.primaryColorButtonInverse>
-              <SC.primaryColorButtonInverse
-                  className={`modal-button ${isValid}`}
-                  onClick={() => setJobsite("ZipRecruiter")}
-                >
-                  zipRecruiter
-              </SC.primaryColorButtonInverse>
-            </div>
-          </div>
-          {/* LINK */}
-          <div className="job-input-container">
-            <span className="input-label">Link</span>
-            <SC.authInput
-              className="modal-input job"
-              type="text"
-              maxLength="500"
-              placeholder="Listing URL (Cmd/Ctrl + L)"
-              onChange={(e) => handleSetLink(e.target.value)}
               required
             ></SC.authInput>
           </div>
