@@ -175,6 +175,22 @@ export default function NewJobModal({ board }) {
     setJobsite(detectedSite);
   };
 
+  // Keypress event listener to open the modal
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === '+' || event.key === '=') {
+        handleOpenModal();
+      } else if (event.key === 'Escape' && showModal) {
+        handleCloseAnimation();
+      }
+    };
+  
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showModal]);
+
   return (
     <>
     {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
