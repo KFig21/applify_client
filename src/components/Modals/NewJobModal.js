@@ -153,23 +153,27 @@ export default function NewJobModal({ board }) {
     setLocationState("NA")
   }
 
+  const jobSiteMapping = {
+    linkedin: 'LinkedIn',
+    indeed: 'Indeed',
+    glassdoor: 'Glassdoor',
+    monster: 'Monster',
+    ziprecruiter: 'ZipRecruiter',
+    google: 'Google',
+  };
+  
   const handleSetLink = (link) => {
-    setLink(link)
-    
-    if (/linkedin/i.test(link)) {
-      setJobsite('LinkedIn');
-    } else if (/indeed/i.test(link)) {
-      setJobsite('Indeed');
-    } else if (/glassdoor/i.test(link)) {
-      setJobsite('Glassdoor');
-    } else if (/monster/i.test(link)) {
-      setJobsite('Monster');
-    } else if (/ziprecruiter/i.test(link)) {
-      setJobsite('ZipRecruiter');
-    } else if (/google/i.test(link)) {
-      setJobsite('Google');
+    setLink(link);
+    let detectedSite = 'Direct/Other'; // Default site name for unmatched links
+    // Check if the link matches any known job site
+    for (const [key, site] of Object.entries(jobSiteMapping)) {
+      if (new RegExp(key, 'i').test(link)) {
+        detectedSite = site;
+        break;
+      }
     }
-  }
+    setJobsite(detectedSite);
+  };
 
   return (
     <>
