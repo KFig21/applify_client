@@ -40,7 +40,6 @@ export default function NewJobModal({ board }) {
   const [payMax, setPayMax] = useState(0);
   const [pay, setPay] = useState(0);
   const [notes, setNotes] = useState("");
-  const [favorite, setFavorite] = useState(false);
   // application date
   const timestamp = new Date(Date.now());
   const year = timestamp.getFullYear();
@@ -87,7 +86,7 @@ export default function NewJobModal({ board }) {
               payMax: payMax,
               pay: pay,
               notes: notes,
-              favorite: favorite,
+              favorite: false,
             })
             .then(() => {
               setErrorHandler({ error: false, message: "" });
