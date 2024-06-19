@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { url } from "../../helpers/Api";
+import { getJobInfoScrape, url } from "../../helpers/Api";
 import SC from "../../themes/StyledComponents";
 import AppliedInput from "./components/job/AppliedInput";
 import JobtypeInput from "./components/job/JobtypeInput";
@@ -12,6 +12,7 @@ import ResultInput from "./components/job/ResultInput";
 import StatusInput from "./components/job/StatusInput";
 import { closeAnimation } from "./HelperFunctions";
 import "./Modal.scss";
+import Loader from "../Loader/Loader";
 
 export default function NewJobModal({ board }) {
   const [isValid, setIsValid] = useState(false);
@@ -49,6 +50,8 @@ export default function NewJobModal({ board }) {
   const [appDate, setAppDate] = useState(date);
   // Modal
   const [showModal, setShowModal] = useState(false);
+  // Scrape loader
+  const [scrapeLoader, setScrapeLoader] = useState(false)
 
   // When the modal opens, focus on the first input
   const inputRef = useRef(null);
@@ -174,6 +177,40 @@ export default function NewJobModal({ board }) {
     setJobsite(detectedSite);
   };
 
+  const scrape = async () => {
+    try {
+      setScrapeLoader(true)
+      const params = link
+
+      const queryString = new URLSearchParams(params).toString();
+      const response = await getJobInfoScrape(queryString)
+      const data = await response.json();
+
+      if(data.companyName) { setCompany(data.companyName) }
+      if(data.jobTitle) { setPosition(data.jobTitle) }
+      if(data.notes) { setNotes(data.notes) }
+      if(data.remote) { setRemote(data.remote) }
+      if(data.city) { 
+        if (data.city === 'n/a'){
+          setCity('Remote')
+        } else {
+          setCity(data.city)
+        }
+       }
+      if(data.state) { 
+        if (data.state === 'United States'){
+          setLocationState('NA')
+        } else {
+          setLocationState(data.state)
+        }
+      }
+      setScrapeLoader(false)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setScrapeLoader(false)
+    }
+  }
+
   // Keypress event listener to open the modal
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -201,6 +238,36 @@ export default function NewJobModal({ board }) {
           <SC.modalTitleBoxShadow>⠀</SC.modalTitleBoxShadow>
         </SC.modalTitleContainer>
         <div className="modal-inputs-container">
+          {/* LINK */}
+          <div className="job-input-container">
+            <span className="input-label">Link</span>
+            <SC.authInput
+              className="modal-input job"
+              type="text"
+              maxLength="500"
+              placeholder="Listing URL (Cmd/Ctrl + L)"
+              ref={inputRef}
+              onChange={(e) => handleSetLink(e.target.value)}
+              required
+            ></SC.authInput>
+          </div>
+          {/* LISTING SCRAPER */}
+          {!scrapeLoader ? <div className="job-input-container scraper">
+            <span className="input-label"></span>
+            <SC.primaryColorButtonInverse
+                className={`modal-button ${isValid}`}
+                onClick={() => scrape()}
+              >
+              Fetch Listing Data
+            </SC.primaryColorButtonInverse>
+            <div className="scraper-message">
+              <SC.subtextOnBgColor>{"( LinkedIn or Indeed only )"}</SC.subtextOnBgColor>
+            </div>
+          </div> :
+          <div className="job-input-container">
+            <Loader type={'small'} />
+          </div>
+          }
           {/* COMPANY */}
           <div className="job-input-container">
             <span className="input-label">Company</span>
@@ -210,7 +277,7 @@ export default function NewJobModal({ board }) {
               maxLength="50"
               placeholder="Company name"
               onChange={(e) => setCompany(e.target.value)}
-              ref={inputRef}
+              value={company}
               required
             ></SC.authInput>
           </div>
@@ -223,6 +290,7 @@ export default function NewJobModal({ board }) {
               maxLength="50"
               placeholder="Position title"
               onChange={(e) => setPosition(e.target.value)}
+              value={position}
               required
             ></SC.authInput>
           </div>
@@ -293,18 +361,6 @@ export default function NewJobModal({ board }) {
           <ResultInput result={result} setResult={setResult} />
           {/* TYPE */}
           <JobtypeInput jobtype={jobtype} setJobtype={setJobtype} />
-          {/* LINK */}
-          <div className="job-input-container">
-            <span className="input-label">Link</span>
-            <SC.authInput
-              className="modal-input job"
-              type="text"
-              maxLength="500"
-              placeholder="Listing URL (Cmd/Ctrl + L)"
-              onChange={(e) => handleSetLink(e.target.value)}
-              required
-            ></SC.authInput>
-          </div>
           {/* SITE */}
           <div className="job-input-container">
             <span className="input-label">Site</span>
@@ -371,6 +427,7 @@ export default function NewJobModal({ board }) {
               maxLength="10000"
               placeholder="Notes about the job (description, requirements, point of contact, shift...)"
               onChange={(e) => setNotes(e.target.value)}
+              value={notes}
               required
             ></SC.jobNotesTextarea>
           </div>

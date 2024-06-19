@@ -64,3 +64,14 @@ export const getQuickLinks = async (user) => {
   const res = await axios.get(`${url}/auth/quicklinks/${user}`);
   return res.data;
 };
+
+// ---------- JOB SCRAPE ----------
+export const getJobInfoScrape = async (params) => {
+  const res = await fetch(`${url}/utils/scrape/${params}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return res;
+};
