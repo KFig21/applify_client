@@ -184,7 +184,19 @@ export default function NewJobModal({ board }) {
 
       const queryString = new URLSearchParams(params).toString();
       const response = await getJobInfoScrape(queryString)
-      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const responseData = await response.text();
+
+      let data;
+      try {
+        data = JSON.parse(responseData);
+      } catch (error) {
+        console.error('Error parsing JSON:', error);
+        throw new Error('Invalid JSON response from server');
+      }
 
       if(data.companyName) { setCompany(data.companyName) }
       if(data.jobTitle) { setPosition(data.jobTitle) }
