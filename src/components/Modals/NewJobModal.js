@@ -185,7 +185,8 @@ export default function NewJobModal({ board }) {
       if(data.companyName) { setCompany(data.companyName) }
       if(data.jobTitle) { setPosition(data.jobTitle) }
       if(data.notes) { setNotes(data.notes) }
-      if(data.remote) { setRemote(data.remote) }
+      // pages dont show remote/onsite status
+      // if(data.remote) { setRemote(data.remote) }
       if(data.city) { 
         if (data.city === 'n/a'){
           setCity('Remote')
