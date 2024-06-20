@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // API endpoint URL
-// export const url = "http://localhost:3000/api"; // local
-export const url = "https://applify-api.herokuapp.com/api"; // api
+export const url = "http://localhost:3000/api"; // local
+// export const url = "https://applify-api.herokuapp.com/api"; // api
 
 // protect apis section - https://www.youtube.com/watch?v=aMFClmsA9Xw
 export const setHeaders = () => {
@@ -66,12 +66,8 @@ export const getQuickLinks = async (user) => {
 };
 
 // ---------- JOB SCRAPE ----------
-export const getJobInfoScrape = async (params) => {
-  const res = await fetch(`${url}/utils/scrape/${params}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  return res;
+export const getJobInfoScrape = async (body) => {
+  const res = await axios.post(`${url}/utils/scrape`, body);
+  console.log('res', res)
+  return res.data;
 };
