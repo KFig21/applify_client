@@ -224,6 +224,26 @@ export default function NewJobModal({ board }) {
     };
   }, [showModal]);
 
+  // Keypress event listener to submit the form
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Check for Command (Mac) or Control (Windows) key
+      const isCommandOrCtrlPressed = event.metaKey || event.ctrlKey;
+      
+      // Check if Enter key is pressed
+      if (isCommandOrCtrlPressed && event.key === "Enter") {
+        handleAddNewJob();
+      } else if (event.key === "Escape" && showModal) {
+        handleCloseAnimation();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showModal, company, position, city, locationState, jobsite, link ]);
+
   return (
     <>
     {showModal && <div className={"modal-wrapper " + (animation ? "in" : "out")}>
