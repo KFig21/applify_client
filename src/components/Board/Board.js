@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getBoard, getJobs } from "../../helpers/Api";
 import SC from "../../themes/StyledComponents";
-import Job from "../Job/Job";
+import Job from "../Job/Job"; // dont remove
 import Loader from "../Loader/Loader";
 import NewJobModal from "../Modals/NewJobModal";
 import BoardNameModal from "../Modals/BoardNameModal";
