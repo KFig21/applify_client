@@ -12,7 +12,7 @@ export default function Loader({ type }) {
       if(type === 'home' || type === 'board' || type === 'full-screen'){
         setShowMessage(true);
       }
-    }, 4000);
+    }, 8000);
 
     // Clean up the timer if the component unmounts
     return () => clearTimeout(timer);
