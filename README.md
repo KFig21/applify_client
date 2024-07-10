@@ -19,6 +19,7 @@
   <li>React Sticky-Table</li>
   <li>Heroku hosting</li>   
   <li>SASS</li>
+  <li>Selenium</li>
  </ul>
 
  <h3>Features:</h3>
@@ -40,6 +41,7 @@
     </ul>
   <li>The quick-links can be re-named and switched between link/text types.</li>
   <li>Styled components used to create multiple themes.</li>
+  <li>Scrape listing info from LinkedIn/Indeed URLs.</li>
  </ul>
 
  <h3>Demo GIF</h3>
