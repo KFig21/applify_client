@@ -269,7 +269,7 @@ export default function NewJobModal({ board }) {
             ></SC.authInput>
           </div>
           {/* LISTING SCRAPER */}
-          {/* {!scrapeLoader ? <div className="job-input-container scraper">
+          {!scrapeLoader ? <div className="job-input-container scraper">
             <span className="input-label"></span>
             <SC.primaryColorButtonInverse
                 className={`modal-button ${isValid}`}
@@ -284,7 +284,7 @@ export default function NewJobModal({ board }) {
           <div className="job-input-container">
             <Loader type={'small'} />
           </div>
-          } */}
+          }
           {/* COMPANY */}
           <div className="job-input-container">
             <span className="input-label">Company</span>
