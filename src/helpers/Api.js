@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // API endpoint URL
-// export const url = "http://localhost:3000/api"; // local
-export const url = "https://applify-api.herokuapp.com/api"; // heroku api
+export const url = "http://localhost:3000/api"; // local
+// export const url = "https://applify-api.herokuapp.com/api"; // heroku api
 
 // protect apis section - https://www.youtube.com/watch?v=aMFClmsA9Xw
 export const setHeaders = () => {
